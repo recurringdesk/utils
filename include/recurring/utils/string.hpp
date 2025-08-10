@@ -1,45 +1,53 @@
 #pragma once
-// @todo My own format.
-#include <format>
+
 namespace Recurring
 {
-  // @todo Move String to a new header file
-  struct String
-  {
-  private:
-    static int length_raw(const char *string);
-    char *data;
-
-  public:
-    String();
-    String(const char *from);
-    ~String();
-
-    const char *raw() const;
-
-    // Why do I need making a constructor to use operator???
-    // Because operator doesn't know what to do. *probably
-
-    String operator=(const char *from);
-    String operator=(const String &from);
-
-    int length() const;
-    static int length(const char *from);
-
-    // @todo implement push back
-
-    // void push_back (const char *from);
-    void push_back(const String &string);
-
-    /**
-     * @brief Formats your String!
-     *
-     */
-    template <typename... Args>
-    static String format(const String &string, Args... args)
+    // @todo Move String to a new header file
+    struct String
     {
-      String formatted = std::format(string.raw(), args...).c_str(); 
-      return formatted;
-    }
-  };
+      private:
+        char* data = nullptr;
+        unsigned size = 0;
+
+      public:
+        String ();
+        String (const char* from);
+        String (const String& from);
+        ~String ();
+
+        String& operator= (const char* from);
+
+        bool empty () const;
+
+        /**
+         * @brief Returns the purest form of a string in C++
+         *
+         * @return const char*
+         */
+        const char* raw () const;
+
+        unsigned length () const;
+        static unsigned length (const char* string);
+
+        /**
+         * @brief Compares a string with another
+         *
+         * @param with
+         * @return true
+         * @return false
+         */
+        bool compare (const String& with) const;
+        bool compare (const char* with) const;
+
+        // @todo Implement push_back
+        void push_back (const char* from);
+        void push_back (const String& from);
+
+        template <typename... T>
+        static String
+        format (const String& string, T... args)
+        {
+            return "";
+        }
+    };
 } // namespace Recurring

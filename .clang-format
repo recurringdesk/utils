@@ -1,44 +1,20 @@
-# original post: https://www.reddit.com/r/cpp/comments/q6pl6z/comment/hgfgpmn/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
-# I'm not patient for this.
-
-BasedOnStyle:  GNU
-AlignAfterOpenBracket: Align
-AllowAllParametersOfDeclarationOnNextLine: false
-AllowShortBlocksOnASingleLine: true
-AllowShortCaseLabelsOnASingleLine: true
-AllowShortFunctionsOnASingleLine: All
-# Uncommenting these lines will sometimes result in lines following an
-# if(){} or for(){} block being attached to the end of the block.
-# AllowShortIfStatementsOnASingleLine: true
-# AllowShortLoopsOnASingleLine: true
-AlwaysBreakAfterDefinitionReturnType: None
-AlwaysBreakAfterReturnType: None
+Language: Cpp
+BasedOnStyle: GNU
+IndentWidth: 4
+PointerAlignment: Left
+NamespaceIndentation: All
+FixNamespaceComments: true
+RemoveSemicolon: true
+SeparateDefinitionBlocks: Always
 BreakBeforeBraces: Custom
 BraceWrapping:
-  AfterClass:      true
+  AfterClass: true
   AfterControlStatement: true
-  AfterEnum:       true
-  AfterFunction:   true
-  AfterNamespace:  true
-  AfterStruct:     true
-  AfterUnion:      true
-  AfterExternBlock: true
-  BeforeCatch:     true
-  BeforeElse:      true
-  IndentBraces:    true
-  SplitEmptyFunction: false
-  SplitEmptyRecord: false
-  SplitEmptyNamespace: false
-ContinuationIndentWidth: 2
-Cpp11BracedListStyle: true
-KeepEmptyLinesAtTheStartOfBlocks: false
-Language:        Cpp
-MaxEmptyLinesToKeep: 1
-NamespaceIndentation: All
-PenaltyExcessCharacter: 100
-PenaltyReturnTypeOnItsOwnLine: 1
-PointerAlignment: Right
-SortIncludes: false
-SpaceBeforeParens: Never
-SpacesInContainerLiterals: false
-Standard:        Cpp11
+  AfterEnum: true
+  AfterFunction: true
+  AfterNamespace: true
+  AfterStruct: true
+  AfterUnion: true
+  BeforeCatch: true
+  BeforeElse: true
+  IndentBraces: false

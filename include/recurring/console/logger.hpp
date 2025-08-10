@@ -1,19 +1,18 @@
 #pragma once
 #include <recurring/utils/string.hpp>
+
 namespace Recurring::Console
 {
-  struct Card;
-  class Logger
-  {
-    static inline bool debug_mode = false;
+    struct Card;
 
-  public:
-    static void set_debug(bool mode);
+    class Logger
+    {
+        static inline bool debug_mode = false;
 
-    template <typename... Args>
-    static void
-    print(const Card &card, const String &description, Args... args);
-    template <typename... Args>
-    static void print(const String &description, Args... args);
-  };
+      public:
+        static void set_debug (bool mode);
+
+        static void print (const Card& card, const String& description, ...);
+        static void print (const String& description, ...);
+    };
 } // namespace Recurring::Console
