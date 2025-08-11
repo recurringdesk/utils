@@ -2,7 +2,6 @@
 
 namespace Recurring
 {
-    // @todo Move String to a new header file
     struct String
     {
       private:
@@ -31,11 +30,9 @@ namespace Recurring
 
         /**
          * @brief Compares a string to another
-         * 
-         * @param string 
-         * @param with 
-         * @return true 
-         * @return false 
+         *
+         * @return true
+         * @return false
          */
         static bool compare (const char* from, const char* to);
         static bool compare (const String& from, const String& to);

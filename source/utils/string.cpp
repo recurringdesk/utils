@@ -110,7 +110,7 @@ namespace Recurring
     bool
     String::compare (const char* from, const char* to)
     {
-        // std::strcmp sucks. If "from" equals "to" return 0. 
+        // std::strcmp sucks. If "from" equals "to" return 0.
 
         return std::strcmp (from, to) == 0;
     }
