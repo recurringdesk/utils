@@ -1,14 +1,14 @@
-# UntitledUtils
+# RUtils
 
 A C++ library for my projects.
 
-## UntitledLogger
+## RLogger
 
 Generic wrapper logger.
 
 ```cpp
-#include <untitled/console/logger.hh>
-using Log = Untitled:Console::Logger;
+#include <recurring/console/logger.hh>
+using Log = Recurring::Console::Logger;
 
 int main(void)
 {
@@ -18,17 +18,18 @@ int main(void)
 ```
 
 Features:
+
 - Cards (aka tags)
 - Colors
 - Template
 
-## UntitledMath
+## RMath
 
 Library for studying mathematical operations.
 
 ```cpp
-#include <untitled/math/functions/square_root.hpp>
-using sqrt = Untitled::Math::square_root;
+#include <recurring/math/functions/square_root.hpp>
+using sqrt = Recurring::Math::square_root;
 int main()
 {
     float x = 9;
