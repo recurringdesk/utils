@@ -8,7 +8,7 @@ Generic wrapper logger.
 
 ```cpp
 #include <recurring/console/logger.hh>
-using Log = R:Console::Logger;
+using Log = Recurring::Console::Logger;
 
 int main(void)
 {
@@ -18,6 +18,7 @@ int main(void)
 ```
 
 Features:
+
 - Cards (aka tags)
 - Colors
 - Template
