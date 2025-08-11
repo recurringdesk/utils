@@ -17,7 +17,7 @@ namespace Recurring
 
         String& operator= (const char* from);
 
-        bool empty () const;
+        bool is_empty () const;
 
         /**
          * @brief Returns the purest form of a string in C++
@@ -30,14 +30,15 @@ namespace Recurring
         static unsigned length (const char* string);
 
         /**
-         * @brief Compares a string with another
-         *
-         * @param with
-         * @return true
-         * @return false
+         * @brief Compares a string to another
+         * 
+         * @param string 
+         * @param with 
+         * @return true 
+         * @return false 
          */
-        bool compare (const String& with) const;
-        bool compare (const char* with) const;
+        static bool compare (const char* from, const char* to);
+        static bool compare (const String& from, const String& to);
 
         // @todo Implement push_back
         void push_back (const char* from);
