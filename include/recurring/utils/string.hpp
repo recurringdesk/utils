@@ -40,12 +40,5 @@ namespace Recurring
         // @todo Implement push_back
         void push_back (const char* from);
         void push_back (const String& from);
-
-        template <typename... T>
-        static String
-        format (const String& string, T... args)
-        {
-            return "";
-        }
     };
 } // namespace Recurring
