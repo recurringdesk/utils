@@ -19,7 +19,7 @@ set(MATH_SOURCE
     source/math/functions.cpp
     source/math/objects.cpp)
 
-add_library(recurringutils SHARED ${CONSOLE_SOURCE} ${MATH_SOURCE} ${UTILS})
+add_library(recurringutils SHARED ${CONSOLE_SOURCE} ${MATH_SOURCE} ${UTILS_SOURCE})
 include_directories(include)
 
 enable_testing()
