@@ -1,7 +1,7 @@
-#include <recurring/math/constants.hpp>
-#include <recurring/math/functions/convert.hpp>
-#include <recurring/math/functions/square_root.hpp>
-#include <recurring/math/functions/trigonometric_functions.hpp>
+#include <math/constants.hpp>
+#include <math/functions/convert.hpp>
+#include <math/functions/square_root.hpp>
+#include <math/functions/trigonometric_functions.hpp>
 #include <xmmintrin.h>
 
 #include <cmath>
