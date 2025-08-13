@@ -1,6 +1,6 @@
 #pragma once
 #include <print>
-#include <recurring/console/card.hpp>
+#include <console/card.hpp>
 
 namespace Recurring::Console
 {

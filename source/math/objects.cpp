@@ -1,6 +1,6 @@
-#include <recurring/math/functions/square_root.hpp>
-#include <recurring/math/objects/vector2d.hpp>
-#include <recurring/math/objects/vector3d.hpp>
+#include <math/functions/square_root.hpp>
+#include <math/objects/vector2d.hpp>
+#include <math/objects/vector3d.hpp>
 
 namespace Recurring::Math
 {
