@@ -1,6 +1,5 @@
 #include "recurring/utils/string.hpp"
 #include <cstring>
-#include <iostream>
 
 namespace Recurring
 {
@@ -15,7 +14,6 @@ namespace Recurring
         size = 0;
         data = new char[size + 1];
         data[size] = '\0';
-        std::cout << "->" << data << "<-" << '\n';
     }
 
     String::String (const String& from)
@@ -29,7 +27,7 @@ namespace Recurring
         }
         size = length (from.raw ());
         data = new char[size + 1];
-        for (int i = 0; i < size; ++i)
+        for (unsigned i = 0; i < size; ++i)
         {
             data[i] = from.raw ()[i];
         }
@@ -46,7 +44,7 @@ namespace Recurring
         }
         size = length (from);
         data = new char[size + 1];
-        for (int i = 0; i < size; ++i)
+        for (unsigned i = 0; i < size; ++i)
         {
             data[i] = from[i];
         }
@@ -58,7 +56,7 @@ namespace Recurring
         delete[] data;
         size = length (from);
         data = new char[size + 1];
-        for (int i = 0; i < size; ++i)
+        for (unsigned i = 0; i < size; ++i)
         {
             data[i] = from[i];
         }

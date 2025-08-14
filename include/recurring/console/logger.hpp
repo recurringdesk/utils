@@ -33,8 +33,10 @@ namespace Recurring::Console
         static void
         print (const Card& card, const char* description, Args&&... args)
         {
-            std::print ("[{2}{0}{3}] {1}", card.title, description, card.color,
-                        Card::Color::RESET);
+            std::print (
+                "[{2}{0}{3}] {1}\n", card.title,
+                std::vformat (description, std::make_format_args (args...)),
+                card.color, Card::Color::RESET);
         }
     };
 } // namespace Recurring::Console
