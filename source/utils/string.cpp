@@ -1,5 +1,6 @@
-#include "recurring/utils/string.hpp"
 #include <cstring>
+#include <recurring/utils/string.hpp>
+
 
 namespace Recurring
 {

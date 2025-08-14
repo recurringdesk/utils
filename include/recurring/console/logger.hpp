@@ -13,7 +13,7 @@ namespace Recurring::Console
             = { Card::Color::YELLOW, Card::Title::WARNING };
         static constexpr Card INFO = { Card::Color::GREEN, Card::Title::INFO };
         static constexpr Card ERROR = { Card::Color::RED, Card::Title::ERROR };
-        static constexpr Card DEBUGGING
+        static constexpr Card DEBUG
             = { Card::Color::GRAY, Card::Title::DEBUGGING };
         static constexpr Card GENERIC
             = { Card::Color::WHITE, Card::Title::GENERIC };
