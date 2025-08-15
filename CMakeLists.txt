@@ -19,7 +19,7 @@ set(RECURRING_CORE_SOURCE
     source/core/window.cpp)
 
 add_executable(recurring source/core/main.cpp ${RECURRING_CORE_SOURCE})
-target_link_libraries(recurring PRIVATE glfw3dll)
+target_link_libraries(recurring PRIVATE glfw3dll glad)
 
 enable_testing()
 

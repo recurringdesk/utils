@@ -8,7 +8,7 @@ namespace Recurring::Console
     {
         static inline bool debug_mode = false;
 
-      public:
+    public:
         static constexpr Card WARNING
             = { Card::Color::YELLOW, Card::Title::WARNING };
         static constexpr Card INFO = { Card::Color::GREEN, Card::Title::INFO };

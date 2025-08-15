@@ -1,6 +1,6 @@
+#include <GLFW/glfw3.h>
 #include <recurring/core/renderer.hpp>
 
 namespace Recurring::Engine::Graphics
 {
-    OpenGL::OpenGL () {}
 } // namespace Recurring::Engine::Graphics

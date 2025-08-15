@@ -18,3 +18,5 @@ BraceWrapping:
   BeforeCatch: true
   BeforeElse: true
   IndentBraces: false
+AccessModifierOffset: -4
+ColumnLimit: 0
