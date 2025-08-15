@@ -16,10 +16,14 @@ set(RECURRING_CORE_SOURCE
     source/utils/string.cpp
     source/math/functions.cpp
     source/math/objects.cpp
-    source/core/window.cpp)
+    source/core/window.cpp
+    source/core/opengl.cpp)
 
-add_executable(recurring source/core/main.cpp ${RECURRING_CORE_SOURCE})
-target_link_libraries(recurring PRIVATE glfw3dll glad)
+add_library(recurringcore STATIC ${RECURRING_CORE_SOURCE})
+target_link_libraries(recurringcore PUBLIC glfw3dll glad)
+
+add_executable(recurring source/core/main.cpp)
+target_link_libraries(recurring PRIVATE recurringcore)
 
 enable_testing()
 

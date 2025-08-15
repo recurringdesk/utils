@@ -2,10 +2,6 @@
 #include <recurring/console/logger.hpp>
 #include <recurring/utils/error.hpp>
 
-#include <glad/glad.h>
-
-#include <GLFW/glfw3.h>
-
 using Log = Recurring::Console::Logger;
 using Recurring::Engine::Core::Window;
 using Error = Recurring::Error;
@@ -27,7 +23,6 @@ public:
     bool should_close () const override;
     void poll_events () const override;
     void wait_events () const override;
-    static void framebuffer_size_callback (GLFWwindow* window, int width, int height);
 };
 
 int
@@ -39,13 +34,17 @@ main ()
     return 0;
 }
 
+#include <glad/glad.h>
+
+#include <GLFW/glfw3.h>
+
 struct OpenGLWindow::Handle
 {
     GLFWwindow* id;
 };
 
 void
-OpenGLWindow::framebuffer_size_callback (GLFWwindow* window, int width, int height)
+framebuffer_size_callback (GLFWwindow* window, int width, int height)
 {
     glViewport (0, 0, width, height);
 }
@@ -61,11 +60,6 @@ OpenGLWindow::process ()
 {
     glClear (GL_COLOR_BUFFER_BIT);
     glClearColor (0.1f, 0.2f, 0.1f, 1.0f);
-    glBegin (GL_TRIANGLES);
-    glVertex2i (0, 1);
-    glVertex2i (-1, -1);
-    glVertex2i (1, -1);
-    glEnd ();
     swap_buffers ();
 }
 
