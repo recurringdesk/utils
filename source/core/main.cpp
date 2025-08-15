@@ -1,6 +1,11 @@
 #include "recurring/core/window.hpp"
 #include <recurring/console/logger.hpp>
 #include <recurring/utils/error.hpp>
+
+#include <glad/glad.h>
+
+#include <GLFW/glfw3.h>
+
 using Log = Recurring::Console::Logger;
 using Recurring::Engine::Core::Window;
 using Error = Recurring::Error;
@@ -21,7 +26,8 @@ public:
     void create (int width, int height, const char* title = nullptr) override;
     bool should_close () const override;
     void poll_events () const override;
-    void wait_event () const override;
+    void wait_events () const override;
+    static void framebuffer_size_callback (GLFWwindow* window, int width, int height);
 };
 
 int
@@ -33,14 +39,16 @@ main ()
     return 0;
 }
 
-#include <glad/glad.h>
-
-#include <GLFW/glfw3.h>
-
 struct OpenGLWindow::Handle
 {
     GLFWwindow* id;
 };
+
+void
+OpenGLWindow::framebuffer_size_callback (GLFWwindow* window, int width, int height)
+{
+    glViewport (0, 0, width, height);
+}
 
 void
 OpenGLWindow::swap_buffers () const
@@ -52,7 +60,12 @@ void
 OpenGLWindow::process ()
 {
     glClear (GL_COLOR_BUFFER_BIT);
-    glClearColor (0.0f, 0.0f, 0.0f, 1.0f);
+    glClearColor (0.1f, 0.2f, 0.1f, 1.0f);
+    glBegin (GL_TRIANGLES);
+    glVertex2i (0, 1);
+    glVertex2i (-1, -1);
+    glVertex2i (1, -1);
+    glEnd ();
     swap_buffers ();
 }
 
@@ -92,6 +105,8 @@ OpenGLWindow::create (int width, int height, const char* title)
 
     gladLoadGLLoader ((GLADloadproc)glfwGetProcAddress);
 
+    glfwSetFramebufferSizeCallback (handle->id, framebuffer_size_callback);
+
     main_loop ();
 }
 
@@ -100,8 +115,8 @@ OpenGLWindow::main_loop ()
 {
     while (!should_close ())
     {
-        process();
-        poll_events ();
+        process ();
+        wait_events ();
     }
 }
 
@@ -112,7 +127,7 @@ OpenGLWindow::poll_events () const
 }
 
 void
-OpenGLWindow::wait_event () const
+OpenGLWindow::wait_events () const
 {
     glfwWaitEvents ();
 }
