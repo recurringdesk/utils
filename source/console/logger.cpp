@@ -2,7 +2,7 @@
 
 namespace Recurring::Console
 {
-    void
+    RLIB void
     Logger::set_debug (bool mode)
     {
         debug_mode = mode;

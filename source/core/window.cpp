@@ -1,5 +1,5 @@
-#include <recurring/utils/error.hpp>
 #include <glad/glad.h>
+#include <recurring/utils/error.hpp>
 
 #include <GLFW/glfw3.h>
 #include <recurring/console/logger.hpp>
@@ -9,23 +9,24 @@ using Log = Recurring::Console::Logger;
 
 namespace Recurring::Core::Graphics
 {
+    RLIB
     Window::Window ()
     {
         if (!glfwInit ())
             throw Error::GLFW_NOT_INITTED;
     }
 
-    Window::~Window ()
+    RLIB Window::~Window ()
     {
         glfwTerminate ();
     }
 
-    void
+    RLIB void
     Window::process ()
     {
     }
 
-    void
+    RLIB void
     Window::create (int width, int height, const char* title)
     {
         id = glfwCreateWindow (width, height, title, nullptr, nullptr);
@@ -33,44 +34,44 @@ namespace Recurring::Core::Graphics
             throw Error::FAILED_TO_ALLOCATE_MEMORY;
     }
 
-    void
+    RLIB void
     Window::destroy ()
     {
         if (id)
             glfwDestroyWindow (id);
     }
 
-    bool
+    RLIB bool
     Window::should_close () const
     {
         return glfwWindowShouldClose (id);
     }
 
-    void
+    RLIB void
     Window::poll_events () const
     {
         glfwPollEvents ();
     }
 
-    void
+    RLIB void
     Window::wait_events () const
     {
         wait_events ();
     }
 
-    void
+    RLIB void
     Window::swap_buffers () const
     {
         glfwSwapBuffers (id);
     }
 
-    void
+    RLIB void
     Window::set_title (const String& title)
     {
         this->title = title;
     }
 
-    String
+    RLIB String
     Window::get_title () const
     {
         return title;

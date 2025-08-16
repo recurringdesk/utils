@@ -2,11 +2,13 @@
 
 namespace Recurring::Core::Graphics
 {
+    RLIB
     BufferManager::BufferManager (const BufferObject& vertex_buffer)
         : vertex_buffer (vertex_buffer)
     {
     }
 
+    RLIB
     BufferObject::BufferObject (GLenum target, GLenum usage, GLsizeiptr size)
     {
         this->target = target;
@@ -18,20 +20,20 @@ namespace Recurring::Core::Graphics
         glBufferData (target, size, &id, usage);
     }
 
-    BufferObject::~BufferObject ()
+    RLIB BufferObject::~BufferObject ()
     {
         if (!id)
             return;
         glDeleteBuffers (1, &id);
     }
 
-    void
+    RLIB void
     BufferObject::bind () const
     {
         glBindBuffer (target, id);
     }
 
-    void
+    RLIB void
     BufferObject::unbind () const
     {
         glBindBuffer (target, 0);

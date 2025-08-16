@@ -6,6 +6,7 @@ set(CMAKE_CXX_EXTENSIONS false)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include_directories(include)
+add_compile_definitions(RLIB_EXPORT)
 
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
@@ -15,13 +16,15 @@ set(RECURRING_CORE_SOURCE
     source/console/logger.cpp
     source/utils/string.cpp
     source/math/functions.cpp
-    source/math/objects.cpp
+    source/math/objects.cpp)
+
+set(RECURRING_UI_SOURCE
     source/core/window.cpp
     source/core/buffer_manager.cpp)
 
-add_library(recurringcore SHARED ${RECURRING_CORE_SOURCE})
-target_link_libraries(recurringcore PUBLIC glfw3dll glad)
-target_compile_definitions(recurringcore PRIVATE RLIB_EXPORT)
+add_library(recore SHARED ${RECURRING_CORE_SOURCE})
+add_library(reui SHARED ${RECURRING_UI_SOURCE})
+target_link_libraries(reui PUBLIC glfw3dll glad recore)
 
 enable_testing()
 

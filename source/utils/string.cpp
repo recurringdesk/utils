@@ -1,12 +1,12 @@
 #include <cstring>
 #include <recurring/utils/string.hpp>
 
-
 namespace Recurring
 {
     // I should learn how I can make constructors and assignments faster.
     // My anxiety is attacking me.
 
+    RLIB
     String::String ()
     {
         // Creating an empty char, because if data==null it can lead to strange
@@ -17,6 +17,7 @@ namespace Recurring
         data[size] = '\0';
     }
 
+    RLIB
     String::String (const String& from)
     {
         if (from.raw () == nullptr)
@@ -34,6 +35,7 @@ namespace Recurring
         }
     }
 
+    RLIB
     String::String (const char* from)
     {
         if (from == nullptr)
@@ -51,7 +53,7 @@ namespace Recurring
         }
     }
 
-    String&
+    RLIB String&
     String::operator= (const char* from)
     {
         delete[] data;
@@ -64,26 +66,26 @@ namespace Recurring
         return *this;
     }
 
-    String::~String ()
+    RLIB String::~String ()
     {
         // Deleting data because memory leak. Obvious, and thank you for
         // reading this.
         delete[] data;
     }
 
-    const char*
+    RLIB const char*
     String::raw () const
     {
         return data;
     }
 
-    unsigned
+    RLIB unsigned
     String::length () const
     {
         return size;
     }
 
-    unsigned
+    RLIB unsigned
     String::length (const char* string)
     {
         // Instead of making it doing like this, I should make it read by
@@ -110,7 +112,7 @@ namespace Recurring
     String::compare (const char* from, const char* to)
     {
         // std::strcmp sucks. If "from" equals "to" return 0.
-        
+
         return std::strcmp (from, to) ? 0 : 1;
     }
 

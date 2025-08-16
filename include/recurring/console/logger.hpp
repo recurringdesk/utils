@@ -2,10 +2,11 @@
 #define RE_LOGGER_GUARD
 #include <print>
 #include <recurring/console/card.hpp>
+#include <recurring/utils/api.hpp>
 
 namespace Recurring::Console
 {
-    class Logger
+    class RLIB Logger
     {
         static inline bool debug_mode = false;
 
