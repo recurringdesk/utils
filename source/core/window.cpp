@@ -18,7 +18,7 @@ namespace Recurring::Core::Graphics
 
     RLIB Window::~Window ()
     {
-        destroy();
+        destroy ();
         glfwTerminate ();
     }
 

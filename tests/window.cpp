@@ -3,14 +3,16 @@
 
 using Recurring::Core::Graphics::Window;
 using Log = Recurring::Console::Logger;
-int main()
+
+int
+main ()
 {
-    Log::print("OK");
+    Log::print ("OK");
     Window window;
-    window.create(800, 600);
-    while (!window.should_close())
+    window.create (800, 600);
+    while (!window.should_close ())
     {
-        window.wait_events();
+        window.wait_events ();
     }
     return 0;
 }
