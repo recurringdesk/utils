@@ -1,13 +1,13 @@
-#include <recurring/core/opengl.hpp>
+#include <recurring/core/buffer_manager.hpp>
 
 namespace Recurring::Core::Graphics
 {
-    BufferManager::BufferManager (BufferObject& vertex_buffer)
+    BufferManager::BufferManager (const BufferObject& vertex_buffer)
         : vertex_buffer (vertex_buffer)
     {
     }
 
-    BufferObject::BufferObject (GLenum target, GLenum usage, GLsizei size)
+    BufferObject::BufferObject (GLenum target, GLenum usage, GLsizeiptr size)
     {
         this->target = target;
         this->size = size;
@@ -21,9 +21,7 @@ namespace Recurring::Core::Graphics
     BufferObject::~BufferObject ()
     {
         if (!id)
-        {
             return;
-        }
         glDeleteBuffers (1, &id);
     }
 

@@ -1,4 +1,7 @@
-#pragma once
+#ifndef RE_TRIGO_FUNC_GUARD
+#define RE_TRIGO_FUNC_GUARD
+
+#include <recurring/utils/api.hpp>
 
 namespace Recurring::Math
 {
@@ -9,7 +12,8 @@ namespace Recurring::Math
      * @param angle In radians
      * @return T
      */
-    template <typename T> T sine (T angle);
+    template <typename T>
+    RLIB T sine (T angle);
 
     /**
      * @brief The "Y" value of a circle
@@ -18,7 +22,8 @@ namespace Recurring::Math
      * @param angle
      * @return T
      */
-    template <typename T> T cosine (T angle);
+    template <typename T>
+    RLIB T cosine (T angle);
 
     /**
      * @brief Computes the tangent of the given angle (sin(angle) /
@@ -28,5 +33,8 @@ namespace Recurring::Math
      * @param angle Angle in radians.
      * @return T The tangent of the angle.
      */
-    template <typename T> T tangent (T angle);
+    template <typename T>
+    RLIB T tangent (T angle);
 } // namespace Recurring::Math
+
+#endif // RE_TRIGO_FUNC_GUARD

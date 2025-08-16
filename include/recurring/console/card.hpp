@@ -1,4 +1,5 @@
-#pragma once
+#ifndef RE_CARD_GUARD
+#define RE_CARD_GUARD
 
 namespace Recurring::Console
 {
@@ -31,3 +32,5 @@ namespace Recurring::Console
         const char* title = Title::GENERIC;
     };
 } // namespace Recurring::Console
+
+#endif // RE_CARD_GUARD

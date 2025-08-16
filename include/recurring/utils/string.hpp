@@ -1,14 +1,17 @@
-#pragma once
+#ifndef RE_UTILS_STRING_GUARD
+#define RE_UTILS_STRING_GUARD
+
+#include <recurring/utils/api.hpp>
 
 namespace Recurring
 {
-    struct String
+    struct RLIB String
     {
-      private:
+    private:
         char* data = nullptr;
         unsigned size = 0;
 
-      public:
+    public:
         String ();
         String (const char* from);
         String (const String& from);
@@ -42,3 +45,5 @@ namespace Recurring
         void push_back (const String& from);
     };
 } // namespace Recurring
+
+#endif // RE_UTILS_STRING_GUARD

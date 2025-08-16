@@ -1,8 +1,10 @@
 #pragma once
 
+#include <recurring/utils/api.hpp>
+
 namespace Recurring::Math
 {
-    struct Vector3D
+    struct RLIB Vector3D
     {
         float x, y, z;
         float length () const;

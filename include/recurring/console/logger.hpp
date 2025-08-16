@@ -1,4 +1,5 @@
-#pragma once
+#ifndef RE_LOGGER_GUARD
+#define RE_LOGGER_GUARD
 #include <print>
 #include <recurring/console/card.hpp>
 
@@ -40,3 +41,4 @@ namespace Recurring::Console
         }
     };
 } // namespace Recurring::Console
+#endif // RE_LOGGER_GUARD

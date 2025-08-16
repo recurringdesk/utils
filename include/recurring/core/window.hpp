@@ -1,35 +1,32 @@
-#pragma once
+#ifndef RE_CORE_WINDOW
+#define RE_CORE_WINDOW
 
-#include <recurring/core/renderer.hpp>
 #include <recurring/utils/string.hpp>
 
-using Recurring::String;
+typedef struct GLFWwindow Handle;
 
-namespace Recurring::Engine::Core
+namespace Recurring::Core::Graphics
 {
-    class Window
+    class RLIB Window
     {
     private:
         String title;
-
-    protected:
-        virtual void main_loop () = 0;
+        Handle* id;
 
     public:
-        Window () = default;
+        Window ();
+        ~Window ();
 
-        virtual void
-        process ()
-        {
-        }
-
-        virtual ~Window () = default;
-        virtual void create (int width, int height, const char* title = nullptr) = 0;
-        virtual bool should_close () const = 0;
-        virtual void poll_events () const = 0;
-        virtual void wait_events () const = 0;
-        virtual void swap_buffers () const = 0;
+        virtual void process ();
+        virtual void create (int width, int height, const char* title = nullptr);
+        virtual void destroy ();
+        virtual bool should_close () const;
+        virtual void poll_events () const;
+        virtual void wait_events () const;
+        virtual void swap_buffers () const;
         void set_title (const String& title);
         String get_title () const;
     };
-} // namespace Recurring::Engine::Core
+} // namespace Recurring::Core::Graphics
+
+#endif // RE_CORE_WINDOW

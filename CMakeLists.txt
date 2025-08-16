@@ -17,13 +17,11 @@ set(RECURRING_CORE_SOURCE
     source/math/functions.cpp
     source/math/objects.cpp
     source/core/window.cpp
-    source/core/opengl.cpp)
+    source/core/buffer_manager.cpp)
 
-add_library(recurringcore STATIC ${RECURRING_CORE_SOURCE})
+add_library(recurringcore SHARED ${RECURRING_CORE_SOURCE})
 target_link_libraries(recurringcore PUBLIC glfw3dll glad)
-
-add_executable(recurring source/core/main.cpp)
-target_link_libraries(recurring PRIVATE recurringcore)
+target_compile_definitions(recurringcore PRIVATE RLIB_EXPORT)
 
 enable_testing()
 

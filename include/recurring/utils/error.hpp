@@ -1,5 +1,5 @@
-#pragma once
-
+#ifndef RE_UTILS_ERROR_GUARD
+#define RE_UTILS_ERROR_GUARD
 namespace Recurring
 {
     enum Error
@@ -8,3 +8,4 @@ namespace Recurring
         FAILED_TO_ALLOCATE_MEMORY
     };
 } // namespace Recurring
+#endif // RE_UTILS_ERROR_GUARD

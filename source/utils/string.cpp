@@ -110,8 +110,8 @@ namespace Recurring
     String::compare (const char* from, const char* to)
     {
         // std::strcmp sucks. If "from" equals "to" return 0.
-
-        return std::strcmp (from, to) == 0;
+        
+        return std::strcmp (from, to) ? 0 : 1;
     }
 
     bool
@@ -125,7 +125,7 @@ namespace Recurring
         // If data is '\0', it's empty.
         // Else, it's not empty.
 
-        const bool is_empty = compare (data, "\0");
+        const bool is_empty = compare (data, "");
 
         return is_empty;
     }
