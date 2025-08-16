@@ -1,12 +1,12 @@
-#include "recurring/utils/string.hpp"
 #include <cstring>
-#include <iostream>
+#include <recurring/utils/string.hpp>
 
 namespace Recurring
 {
     // I should learn how I can make constructors and assignments faster.
     // My anxiety is attacking me.
 
+    RLIB
     String::String ()
     {
         // Creating an empty char, because if data==null it can lead to strange
@@ -15,9 +15,9 @@ namespace Recurring
         size = 0;
         data = new char[size + 1];
         data[size] = '\0';
-        std::cout << "->" << data << "<-" << '\n';
     }
 
+    RLIB
     String::String (const String& from)
     {
         if (from.raw () == nullptr)
@@ -29,12 +29,13 @@ namespace Recurring
         }
         size = length (from.raw ());
         data = new char[size + 1];
-        for (int i = 0; i < size; ++i)
+        for (unsigned i = 0; i < size; ++i)
         {
             data[i] = from.raw ()[i];
         }
     }
 
+    RLIB
     String::String (const char* from)
     {
         if (from == nullptr)
@@ -46,45 +47,45 @@ namespace Recurring
         }
         size = length (from);
         data = new char[size + 1];
-        for (int i = 0; i < size; ++i)
+        for (unsigned i = 0; i < size; ++i)
         {
             data[i] = from[i];
         }
     }
 
-    String&
+    RLIB String&
     String::operator= (const char* from)
     {
         delete[] data;
         size = length (from);
         data = new char[size + 1];
-        for (int i = 0; i < size; ++i)
+        for (unsigned i = 0; i < size; ++i)
         {
             data[i] = from[i];
         }
         return *this;
     }
 
-    String::~String ()
+    RLIB String::~String ()
     {
         // Deleting data because memory leak. Obvious, and thank you for
         // reading this.
         delete[] data;
     }
 
-    const char*
+    RLIB const char*
     String::raw () const
     {
         return data;
     }
 
-    unsigned
+    RLIB unsigned
     String::length () const
     {
         return size;
     }
 
-    unsigned
+    RLIB unsigned
     String::length (const char* string)
     {
         // Instead of making it doing like this, I should make it read by
@@ -112,7 +113,7 @@ namespace Recurring
     {
         // std::strcmp sucks. If "from" equals "to" return 0.
 
-        return std::strcmp (from, to) == 0;
+        return std::strcmp (from, to) ? 0 : 1;
     }
 
     bool
@@ -126,7 +127,7 @@ namespace Recurring
         // If data is '\0', it's empty.
         // Else, it's not empty.
 
-        const bool is_empty = compare (data, "\0");
+        const bool is_empty = compare (data, "");
 
         return is_empty;
     }

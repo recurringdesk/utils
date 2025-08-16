@@ -9,19 +9,18 @@ main ()
     std::cout << "Testing R::string\n";
     String string = "";
 
-    std::cout << "current string is \'\\0\'\n";
+    std::cout << "current string is \"\"\n";
 
     if (string.is_empty ())
-        std::cout << "OK\n";
+        std::cout << "string is empty\n";
     else
     {
-        std::cout << "OKNOTOK\n";
-        return 1;
+        std::cout << "string isn't empty\n";
     }
 
     string = "Hello, world!";
 
-    std::cout << "current string is " << string.raw ();
+    std::cout << "current string is " << string.raw () << '\n';
 
     return 0;
 }

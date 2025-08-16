@@ -12,7 +12,7 @@
 namespace Recurring::Math
 {
     template <>
-    float
+    RLIB float
     radians_to_degrees (float angle)
     {
         const float angle_in_degrees = angle * (180.0f / PI<float>);
@@ -20,7 +20,7 @@ namespace Recurring::Math
     }
 
     template <>
-    double
+    RLIB double
     radians_to_degrees (double angle)
     {
         const double angle_in_degrees = angle * (180.0 / PI<float>);
@@ -28,7 +28,7 @@ namespace Recurring::Math
     }
 
     template <>
-    float
+    RLIB float
     degrees_to_radians (float angle)
     {
         float angle_in_radians = angle * (PI<float> / 180.0f);
@@ -36,7 +36,7 @@ namespace Recurring::Math
     }
 
     template <>
-    double
+    RLIB double
     degrees_to_radians (double angle)
     {
         double angle_in_radians = angle * (PI<double> / 180.0);
@@ -46,56 +46,56 @@ namespace Recurring::Math
     // Making all trigonometric functions a wrapper from std. I didn't get yet.
 
     template <>
-    float
+    RLIB float
     sine (float angle)
     {
         return std::sinf (angle);
     }
 
     template <>
-    double
+    RLIB double
     sine (double angle)
     {
         return std::sin (angle);
     }
 
     template <>
-    float
+    RLIB float
     cosine (float angule)
     {
         return std::cosf (angule);
     }
 
     template <>
-    double
+    RLIB double
     cosine (double angle)
     {
         return std::cos (angle);
     }
 
     template <>
-    float
+    RLIB float
     tangent (float angle)
     {
         return std::tanf (angle);
     }
 
     template <>
-    double
+    RLIB double
     tangent (double angle)
     {
         return std::tan (angle);
     }
 
     template <>
-    float
+    RLIB float
     square_root (float value)
     {
         return std::sqrtf (value);
     }
 
     template <>
-    double
+    RLIB double
     square_root (double value)
     {
         return std::sqrt (value);

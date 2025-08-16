@@ -2,9 +2,4 @@
 
 namespace Recurring::Console
 {
-    void
-    Logger::set_debug (bool mode)
-    {
-        debug_mode = mode;
-    }
 } // namespace Recurring::Console
