@@ -23,8 +23,8 @@ set(RECURRING_UI_SOURCE
     source/core/buffer_manager.cpp)
 
 add_library(recore SHARED ${RECURRING_CORE_SOURCE})
-add_library(reui SHARED ${RECURRING_UI_SOURCE})
-target_link_libraries(reui PUBLIC glfw3dll glad recore)
+add_library(regui SHARED ${RECURRING_UI_SOURCE})
+target_link_libraries(regui PUBLIC glfw3dll glad recore)
 
 enable_testing()
 

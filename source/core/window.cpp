@@ -18,6 +18,7 @@ namespace Recurring::Core::Graphics
 
     RLIB Window::~Window ()
     {
+        destroy();
         glfwTerminate ();
     }
 
@@ -29,6 +30,8 @@ namespace Recurring::Core::Graphics
     RLIB void
     Window::create (int width, int height, const char* title)
     {
+        if (!title)
+            title = "Untitled";
         id = glfwCreateWindow (width, height, title, nullptr, nullptr);
         if (!id)
             throw Error::FAILED_TO_ALLOCATE_MEMORY;
@@ -56,7 +59,7 @@ namespace Recurring::Core::Graphics
     RLIB void
     Window::wait_events () const
     {
-        wait_events ();
+        glfwWaitEvents ();
     }
 
     RLIB void
