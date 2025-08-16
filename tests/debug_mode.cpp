@@ -10,14 +10,14 @@ main ()
     Log::debug_mode = activate_debug;
     int code = 30;
 
-    Log::print (Log::DEBUG, "The secret code is {}", code);
+    Log::print (Log::DEBUG, "The secret code is ", code);
+    Log::print (Log::INFO, "If you see the 'secret code' above, this sucks");
     if (Log::debug_mode == true)
     {
         Log::print (Log::INFO, "ENABLED");
     }
     else
     {
-        Log::print (Log::INFO, "If you see the 'secret code' above, this sucks");
         Log::print (Log::INFO, "DISABLED");
     }
 

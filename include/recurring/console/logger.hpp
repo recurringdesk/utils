@@ -1,16 +1,14 @@
 #ifndef RE_LOGGER_GUARD
 #define RE_LOGGER_GUARD
-#include <print>
+#include <iostream>
 #include <recurring/console/card.hpp>
 #include <recurring/utils/api.hpp>
 #include <recurring/utils/string.hpp>
 
 namespace Recurring::Console
 {
-    class RLIB Logger
+    struct RLIB Logger
     {
-
-    public:
         static inline bool debug_mode = false;
 
         // The "kind" of any println. It's gonna be putted on the left side.
@@ -20,22 +18,24 @@ namespace Recurring::Console
         static constexpr Card DEBUG = { Color::GRAY, Title::DEBUGGING };
         static constexpr Card GENERIC = { Color::WHITE, Title::GENERIC };
 
+        // @todo Some kinda Variant type, like godot. To see how it works.
+
         template <typename... Args>
         static void
-        print (const char* description, Args&&... args)
+        print (Args&&... args)
         {
-            std::print ("{}\n", std::vformat (description, std::make_format_args (args...)));
+            ((std::cout << ... << args) << '\n');
         }
 
         template <typename... Args>
         static void
-        print (const Card& card, const char* description, Args&&... args)
+        print (const Card& card, Args&&... args)
         {
             if (!debug_mode && String::compare (card.title, DEBUG.title))
             {
                 return;
             }
-            std::print ("[{2}{0}{3}] {1}\n", card.title, std::vformat (description, std::make_format_args (args...)), card.color, Color::RESET);
+            (((std::cout << '[' << card.color << card.title << Color::RESET << ']' << ' ') << ... << args) << '\n');
         }
     };
 } // namespace Recurring::Console
