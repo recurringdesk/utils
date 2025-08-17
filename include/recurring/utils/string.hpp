@@ -7,11 +7,6 @@ namespace Recurring
 {
     struct RLIB String
     {
-    private:
-        char* data = nullptr;
-        unsigned size = 0;
-
-    public:
         String ();
         String (const char* from);
         String (const String& from);
@@ -43,6 +38,10 @@ namespace Recurring
         // @todo Implement push_back
         void push_back (const char* from);
         void push_back (const String& from);
+
+    private:
+        char* data = nullptr;
+        unsigned size = 0;
     };
 } // namespace Recurring
 

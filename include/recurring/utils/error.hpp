@@ -4,8 +4,11 @@ namespace Recurring
 {
     enum Error
     {
-        GLFW_NOT_INITTED = 1,
-        FAILED_TO_ALLOCATE_MEMORY
+        SUCCESS = 0,
+        GLFW_NOT_INITED,
+        OPENGL_NOT_LOADED,
+        MEMORY_NOT_ALLOCATED,
+        NO_WINDOW_TO_LOOP
     };
 } // namespace Recurring
 #endif // RE_UTILS_ERROR_GUARD

@@ -7,13 +7,47 @@
 
 using Log = Recurring::Console::Logger;
 
-namespace Recurring::Core::Graphics
+namespace Recurring::System
 {
+    RLIB
+    MainLoop::MainLoop (Window& window, Core::Node& scene)
+        : window (window), scene (&scene)
+    {
+        if (!this->window.get_id ())
+        {
+            Log::print (Log::WARNING, "Did you forget to create the window?");
+            return;
+        }
+    }
+
+    RLIB int
+    MainLoop::run ()
+    {
+        if (!this->window.get_id ())
+        {
+            Log::print (Log::ERROR, "No window to loop.");
+            return Error::NO_WINDOW_TO_LOOP;
+        }
+        while (!window.should_close ())
+        {
+            scene->process ();
+            window.swap_buffers ();
+            window.poll_events ();
+        }
+        return Error::SUCCESS;
+    }
+
     RLIB
     Window::Window ()
     {
         if (!glfwInit ())
-            throw Error::GLFW_NOT_INITTED;
+            throw Error::GLFW_NOT_INITED;
+    }
+
+    Handle*
+    Window::get_id () const
+    {
+        return id;
     }
 
     RLIB Window::~Window ()
@@ -23,18 +57,18 @@ namespace Recurring::Core::Graphics
     }
 
     RLIB void
-    Window::process ()
-    {
-    }
-
-    RLIB void
     Window::create (int width, int height, const char* title)
     {
         if (!title)
             title = "Untitled";
         id = glfwCreateWindow (width, height, title, nullptr, nullptr);
         if (!id)
-            throw Error::FAILED_TO_ALLOCATE_MEMORY;
+            throw Error::MEMORY_NOT_ALLOCATED;
+        glfwMakeContextCurrent (id);
+        if (!gladLoadGLLoader ((GLADloadproc)glfwGetProcAddress))
+        {
+            throw Error::OPENGL_NOT_LOADED;
+        }
     }
 
     RLIB void
@@ -74,9 +108,9 @@ namespace Recurring::Core::Graphics
         this->title = title;
     }
 
-    RLIB String
+    RLIB const String&
     Window::get_title () const
     {
         return title;
     }
-} // namespace Recurring::Core::Graphics
+} // namespace Recurring::System

@@ -1,15 +1,16 @@
 #ifndef RE_CORE_WINDOW
 #define RE_CORE_WINDOW
 
+#include "node.hpp"
+#include <recurring/core/node.hpp>
 #include <recurring/utils/string.hpp>
 
 typedef struct GLFWwindow Handle;
 
-namespace Recurring::Core::Graphics
+namespace Recurring::System
 {
     class RLIB Window
     {
-    private:
         String title;
         Handle* id;
 
@@ -17,7 +18,6 @@ namespace Recurring::Core::Graphics
         Window ();
         ~Window ();
 
-        virtual void process ();
         virtual void create (int width, int height, const char* title = nullptr);
         virtual void destroy ();
         virtual bool should_close () const;
@@ -25,8 +25,21 @@ namespace Recurring::Core::Graphics
         virtual void wait_events () const;
         virtual void swap_buffers () const;
         void set_title (const String& title);
-        String get_title () const;
+        const String& get_title () const;
+        Handle* get_id () const;
     };
-} // namespace Recurring::Core::Graphics
+
+    class RLIB MainLoop
+    {
+        Window window;
+        Core::Node* scene;
+
+    public:
+        MainLoop (Window& window, Core::Node& scene);
+
+        virtual int
+        run ();
+    };
+} // namespace Recurring::System
 
 #endif // RE_CORE_WINDOW
