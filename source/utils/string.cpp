@@ -63,6 +63,7 @@ namespace Recurring
         {
             data[i] = from[i];
         }
+        data[size] = '\0';
         return *this;
     }
 
@@ -91,6 +92,8 @@ namespace Recurring
         // Instead of making it doing like this, I should make it read by
         // chunks. Using, idk, something like multithread?
 
+        if (!string)
+            return 0;
         unsigned size = 0;
         while (string[size] != '\0')
             ++size;
@@ -113,6 +116,8 @@ namespace Recurring
     {
         // std::strcmp sucks. If "from" equals "to" return 0.
 
+        if (!from || !to)
+            return false;
         return std::strcmp (from, to) ? 0 : 1;
     }
 

@@ -5,7 +5,7 @@
 #include <recurring/utils/api.hpp>
 #include <recurring/utils/string.hpp>
 
-#ifndef _DEBUG
+#ifndef DEBUG
 #define LOG_DEBUG(description) std::cout << description << '\n';
 #else
 #define LOG_DEBUG(description)
