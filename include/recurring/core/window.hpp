@@ -11,19 +11,20 @@ namespace Recurring::System
 {
     class RLIB Window
     {
-        String title;
-        Handle* id;
+        String title = nullptr;
+        Handle* id = nullptr;
 
     public:
         Window ();
         ~Window ();
 
-        virtual void create (int width, int height, const char* title = nullptr);
-        virtual void destroy ();
-        virtual bool should_close () const;
-        virtual void poll_events () const;
-        virtual void wait_events () const;
-        virtual void swap_buffers () const;
+        int create (int width, int height, const char* title = nullptr);
+        static int make_context_current (Handle* id);
+        void destroy ();
+        bool should_close () const;
+        void poll_events () const;
+        void wait_events () const;
+        void swap_buffers () const;
         void set_title (const String& title);
         const String& get_title () const;
         Handle* get_id () const;
@@ -31,8 +32,8 @@ namespace Recurring::System
 
     class RLIB MainLoop
     {
-        Window window;
-        Core::Node* scene;
+        Window& window;
+        Core::Node& node;
 
     public:
         MainLoop (Window& window, Core::Node& scene);

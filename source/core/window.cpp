@@ -4,6 +4,7 @@
 #include <GLFW/glfw3.h>
 #include <recurring/console/logger.hpp>
 #include <recurring/core/window.hpp>
+#include <thread>
 
 using Log = Recurring::Console::Logger;
 
@@ -11,7 +12,7 @@ namespace Recurring::System
 {
     RLIB
     MainLoop::MainLoop (Window& window, Core::Node& scene)
-        : window (window), scene (&scene)
+        : window (window), node (scene)
     {
         if (!this->window.get_id ())
         {
@@ -28,20 +29,28 @@ namespace Recurring::System
             Log::print (Log::ERROR, "No window to loop.");
             return Error::NO_WINDOW_TO_LOOP;
         }
+
+        Log::print (Log::INFO, "There is a window");
+
+        if (!glfwGetCurrentContext ())
+        {
+            Log::print (Log::ERROR, "No window to loop.");
+            return Error::CONTEXT_WAS_NOT_MAKE;
+        }
+
+        Log::print (Log::INFO, "There is context");
+
+        node.ready ();
+
+        Log::print (Log::INFO, "Node is ready");
+
         while (!window.should_close ())
         {
-            scene->process ();
+            node.process ();
             window.swap_buffers ();
             window.poll_events ();
         }
         return Error::SUCCESS;
-    }
-
-    RLIB
-    Window::Window ()
-    {
-        if (!glfwInit ())
-            throw Error::GLFW_NOT_INITED;
     }
 
     Handle*
@@ -50,32 +59,57 @@ namespace Recurring::System
         return id;
     }
 
+    RLIB
+    Window::Window ()
+    {
+        Log::print (Log::WARNING, "Using class Window is only for fun.");
+    }
+
     RLIB Window::~Window ()
     {
-        destroy ();
+        Log::print (Log::WARNING, "Deleting class Window in the thread ", std::this_thread::get_id ());
+        if (id)
+            destroy ();
         glfwTerminate ();
     }
 
-    RLIB void
+    // @todo Make this per thread. I've tested
+
+    RLIB int
     Window::create (int width, int height, const char* title)
     {
+        Log::print (Log::WARNING, "Creating window in the thread -> ", std::this_thread::get_id ());
         if (!title)
-            title = "Untitled";
-        id = glfwCreateWindow (width, height, title, nullptr, nullptr);
+            this->title = "Untitled";
+
+        if (!glfwInit ())
+            return Error::GLFW_NOT_INITED;
+
+        id = glfwCreateWindow (width, height, this->title.raw (), nullptr, nullptr);
         if (!id)
-            throw Error::MEMORY_NOT_ALLOCATED;
+            return Error::MEMORY_NOT_ALLOCATED;
+
+        return make_context_current (id);
+    }
+
+    RLIB int
+    Window::make_context_current (Handle* id)
+    {
         glfwMakeContextCurrent (id);
+
+        if (!glfwGetCurrentContext ())
+            return Error::CONTEXT_WAS_NOT_MAKE;
+
         if (!gladLoadGLLoader ((GLADloadproc)glfwGetProcAddress))
-        {
-            throw Error::OPENGL_NOT_LOADED;
-        }
+            return Error::OPENGL_NOT_LOADED;
+
+        return Error::SUCCESS;
     }
 
     RLIB void
     Window::destroy ()
     {
-        if (id)
-            glfwDestroyWindow (id);
+        glfwDestroyWindow (id);
     }
 
     RLIB bool
