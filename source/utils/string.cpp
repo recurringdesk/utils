@@ -63,7 +63,7 @@ namespace Recurring
         {
             data[i] = from[i];
         }
-        data[size] = '\0';
+        data[size] = '\0'; // I had forgotten this. Every `const char*` has an `\0` - 2025-08-17
         return *this;
     }
 

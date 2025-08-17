@@ -9,6 +9,9 @@ typedef struct GLFWwindow Handle;
 
 namespace Recurring::System
 {
+    // Idk if Window must be part of system. Yeah, it's a wrapper for GLFW,
+    // because it's gonna be painful to implement Wayland, X11 or even WinAPI from scratch. - 2025-17-08
+
     class RLIB Window
     {
         String title = nullptr;

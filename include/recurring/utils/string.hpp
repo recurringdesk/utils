@@ -5,6 +5,9 @@
 
 namespace Recurring
 {
+    // A substitute for std::string and blah blah blah.
+    // Try to use it in the whole project! - 2025-08-17
+
     struct RLIB String
     {
         String ();
@@ -36,11 +39,17 @@ namespace Recurring
         static bool compare (const String& from, const String& to);
 
         // @todo Implement push_back
+
+        // I need to implement this. It's kinda simple. - 2025-08-17
+
         void push_back (const char* from);
         void push_back (const String& from);
 
     private:
+        // The real and current storaged data. - 2025-08-17
         char* data = nullptr;
+        // The string's size. Not needing to recalculate
+        // stuff every time when calling `length` - 2025-08-17
         unsigned size = 0;
     };
 } // namespace Recurring

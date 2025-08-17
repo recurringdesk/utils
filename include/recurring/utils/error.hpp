@@ -2,6 +2,9 @@
 #define RE_UTILS_ERROR_GUARD
 namespace Recurring
 {
+    // Errors codes
+    // Just avoiding magic numbers. - 2025-08-17
+
     enum Error
     {
         SUCCESS = 0,

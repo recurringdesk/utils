@@ -9,6 +9,8 @@
 // cmath just for sine, cosine and tanget. Using this temporarily.
 // sin, cos, tan, sqrt...
 
+// Math is literally a wrapper for cmath? Go to hell which one had this big idea... (to me) - 2025-08-17
+
 namespace Recurring::Math
 {
     template <>
@@ -44,6 +46,8 @@ namespace Recurring::Math
     }
 
     // Making all trigonometric functions a wrapper from std. I didn't get yet.
+
+    // I'm just too lazy to get it... Motivation is tired. - 2025-08-17
 
     template <>
     RLIB float
