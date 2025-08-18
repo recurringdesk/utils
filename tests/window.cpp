@@ -1,4 +1,6 @@
+#include "recurring/math/functions/square_root.hpp"
 #include "recurring/utils/error.hpp"
+#include <recurring/math/trigonometry.hpp>
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
@@ -10,6 +12,7 @@
 using Recurring::System::Window;
 using Log = Recurring::Console::Logger;
 using Recurring::Core::Node;
+using namespace Recurring::Math;
 
 class MyNode : public Node
 {
@@ -17,6 +20,8 @@ public:
     void
     ready () override
     {
+        int value = 9;
+        Log::print (Log::INFO, "sqrt of 9 == ", square_root ((float)value));
     }
 
     void
@@ -38,7 +43,7 @@ protected:
     void
     internal_loop (Recurring::Core::Node* node) override
     {
-        node->process();
+        node->process ();
         swap_buffers ();
         wait_events ();
     }
