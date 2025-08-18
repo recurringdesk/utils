@@ -1,36 +1,32 @@
-#include <glad/glad.h>
+#include <GL/glew.h>
 #include <recurring/utils/error.hpp>
 
-#include <GLFW/glfw3.h>
+#include <GLFW/glfw3.h> // I love wrapping libraries to my own library because. - 2025-08-18
 #include <recurring/console/logger.hpp>
 #include <recurring/core/window.hpp>
-#include <thread>
 
 using Log = Recurring::Console::Logger;
 
 namespace Recurring::System
 {
-    RLIB
-    MainLoop::MainLoop (Window& window, Core::Node& scene)
-        : window (window), node (scene)
+    RLIB void
+    Window::internal_loop (Core::Node* node)
     {
-        if (!this->window.get_id ())
-        {
-            Log::print (Log::WARNING, "Did you forget to create the window?");
-            return;
-        }
+        node->process ();
+        swap_buffers ();
+        wait_events ();
     }
 
     RLIB int
-    MainLoop::run ()
+    Window::run (Core::Node* node)
     {
-        if (!this->window.get_id ())
+        if (!get_id ())
         {
-            Log::print (Log::ERROR, "No window to loop.");
+            Log::print (Log::ERROR, "No window to loop!");
             return Error::NO_WINDOW_TO_LOOP;
         }
 
-        Log::print (Log::INFO, "There is a window");
+        LOG_DEBUG ("There is a window")
 
         if (!glfwGetCurrentContext ())
         {
@@ -38,78 +34,115 @@ namespace Recurring::System
             return Error::CONTEXT_WAS_NOT_MAKE;
         }
 
-        Log::print (Log::INFO, "There is context");
+        LOG_DEBUG ("There is a context");
 
-        node.ready ();
+        if (!node)
+            node = new Core::Node;
 
-        Log::print (Log::INFO, "Node is ready");
+        node->ready ();
 
-        while (!window.should_close ())
+        LOG_DEBUG ("Node is ready")
+
+        while (!should_close ())
         {
-            node.process ();
-            window.swap_buffers ();
-            window.poll_events ();
+            internal_loop (node);
         }
         return Error::SUCCESS;
     }
 
-    Handle*
+    RLIB Handle*
     Window::get_id () const
     {
         return id;
     }
 
+    RLIB void
+    Window::set_id (Handle* id)
+    {
+        this->id = id;
+    }
+
     RLIB
     Window::Window ()
     {
-        Log::print (Log::WARNING, "Using class Window is only for fun.");
+        // Do you think creating an OpenGL app is the most funny thing?
+        // No, it's not. It's painful. But I love being masochist.
+        // Instead of hanging out with people,
+        // helping my social skills... I'm here.
+        // Programming things I'll never use in the real world.
+        // Bjarne certainly wouldn't pride of me. - 2025-08-18
+
+        Log::print (Log::WARNING, "Using 'class Window' is so funny!");
     }
 
     RLIB Window::~Window ()
     {
-        Log::print (Log::WARNING, "Deleting class Window in the thread ", std::this_thread::get_id ());
+        // Do I really need this warning? YES.
+
+        Log::print (Log::WARNING, "Deleting window");
         if (id)
             destroy ();
         glfwTerminate ();
     }
 
-    // @todo Make this per thread. I've tested
-
     RLIB int
     Window::create (int width, int height, const char* title)
     {
-        Log::print (Log::WARNING, "Creating window in the thread -> ", std::this_thread::get_id ());
+        // Added the next warning because it looks cool. Idk, it's useless.
+        // At the first moment I thought "hum, cool. I'm gonna use it because
+        // this module is experimental", but the whole library is something experimental.
+        // Definitely, this was the first moment I thought
+        // as the intelligent human being alive. - 2025-08-18
+
+        if (get_id ())
+            return Error::WINDOW_ALREADY_EXISTS;
+
+        Log::print (Log::WARNING, "Creating window!");
         if (!title)
             this->title = "Untitled";
+        else
+            this->title = title;
 
         if (!glfwInit ())
             return Error::GLFW_NOT_INITED;
 
-        id = glfwCreateWindow (width, height, this->title.raw (), nullptr, nullptr);
-        if (!id)
+        set_id (glfwCreateWindow (width, height, this->title.raw (), nullptr, nullptr));
+        if (!get_id ())
             return Error::MEMORY_NOT_ALLOCATED;
 
-        return make_context_current (id);
-    }
-
-    RLIB int
-    Window::make_context_current (Handle* id)
-    {
-        glfwMakeContextCurrent (id);
-
-        if (!glfwGetCurrentContext ())
-            return Error::CONTEXT_WAS_NOT_MAKE;
-
-        if (!gladLoadGLLoader ((GLADloadproc)glfwGetProcAddress))
-            return Error::OPENGL_NOT_LOADED;
+        if (const int error = make_context_current (); error != Error::SUCCESS)
+            return error;
 
         return Error::SUCCESS;
     }
 
     RLIB void
+    Window::swap_interval (int value) const
+    {
+        glfwSwapInterval (value);
+    }
+
+    RLIB int
+    Window::make_context_current () const
+    {
+        glfwMakeContextCurrent (this->id);
+
+        if (!glfwGetCurrentContext ())
+            return Error::CONTEXT_WAS_NOT_MAKE;
+
+        if (glewInit () != GLEW_OK)
+            return Error::GLEW_NOT_INITED;
+
+        return Error::SUCCESS;
+    }
+
+    RLIB int
     Window::destroy ()
     {
+        if (!id)
+            return Error::NO_WINDOW_TO_DESTROY;
         glfwDestroyWindow (id);
+        return Error::SUCCESS;
     }
 
     RLIB bool
@@ -136,10 +169,13 @@ namespace Recurring::System
         glfwSwapBuffers (id);
     }
 
-    RLIB void
+    RLIB int
     Window::set_title (const String& title)
     {
+        if (title.is_empty ())
+            return Error::STRING_IS_EMPTY;
         this->title = title;
+        return Error::SUCCESS;
     }
 
     RLIB const String&

@@ -17,32 +17,48 @@ namespace Recurring::System
         String title = nullptr;
         Handle* id = nullptr;
 
+    protected:
+        int make_context_current () const;
+        virtual void
+        internal_loop (Core::Node* node);
+
     public:
         Window ();
         ~Window ();
 
+        /**
+         * @brief Creates a window using GLFW!
+         *
+         * @param width It's the x size!
+         * @param height It's the y size!
+         * @param title The text in the window header!
+         * @return int
+         */
         int create (int width, int height, const char* title = nullptr);
-        static int make_context_current (Handle* id);
-        void destroy ();
+
+        /**
+         * @brief Will serve as "v-sync". Idk, it's the same ideia.
+         *
+         * @param value
+         */
+        void swap_interval (int value) const;
+
+        /**
+         * @brief Call it to destroy the existence window.
+         *
+         * @return int
+         */
+        int destroy ();
         bool should_close () const;
         void poll_events () const;
         void wait_events () const;
         void swap_buffers () const;
-        void set_title (const String& title);
+        int set_title (const String& title);
         const String& get_title () const;
         Handle* get_id () const;
-    };
-
-    class RLIB MainLoop
-    {
-        Window& window;
-        Core::Node& node;
-
-    public:
-        MainLoop (Window& window, Core::Node& scene);
-
+        void set_id (Handle* id);
         virtual int
-        run ();
+        run (Core::Node* node = nullptr);
     };
 } // namespace Recurring::System
 

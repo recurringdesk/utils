@@ -1,7 +1,7 @@
 #ifndef RE_CORE_BF_MNGR_GUARD
 #define RE_CORE_BF_MNGR_GUARD
 
-#include <glad/glad.h>
+#include <GL/glew.h>
 #include <recurring/utils/api.hpp>
 
 namespace Recurring::Core::Graphics

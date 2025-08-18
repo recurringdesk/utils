@@ -24,7 +24,7 @@ set(RECURRING_UI_SOURCE
 
 add_library(recore SHARED ${RECURRING_CORE_SOURCE})
 add_library(regui SHARED ${RECURRING_UI_SOURCE})
-target_link_libraries(regui PUBLIC glfw3dll glad recore)
+target_link_libraries(regui PUBLIC glfw3dll glew32 opengl32 recore)
 
 enable_testing()
 

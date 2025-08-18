@@ -9,10 +9,14 @@ namespace Recurring
     {
         SUCCESS = 0,
         GLFW_NOT_INITED,
+        GLEW_NOT_INITED,
         OPENGL_NOT_LOADED,
         MEMORY_NOT_ALLOCATED,
+        WINDOW_ALREADY_EXISTS,
         NO_WINDOW_TO_LOOP,
-        CONTEXT_WAS_NOT_MAKE
+        NO_WINDOW_TO_DESTROY,
+        CONTEXT_WAS_NOT_MAKE,
+        STRING_IS_EMPTY
     };
 } // namespace Recurring
 #endif // RE_UTILS_ERROR_GUARD
