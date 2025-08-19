@@ -12,8 +12,29 @@
 #define LOG_DEBUG(description)
 #endif
 
+/* 2025-08-19
+I'm afraid turning this library extremely overheaded.
+
+It's OK if it's overheaded, but, turning it
+horrible in too many ways that I can't even use it in the future.
+*/
+
 namespace Recurring::Console
 {
+    /* 64::00 | 2025-08-19
+    ChatGPT gave me the next line. In 2 years of C++ I've never seen this before.
+    I don't know what is a concept, actually. Is it to say "Hey! You can't do this
+    in this line!"? If yes, I'm gonna try use it anywhere.
+
+    It's gonna push to "os" the received value, and it's gonna verify if it's
+    compatible with ostream.
+
+    I don't know what's that "->" yet...
+    */
+
+    template <typename Arg>
+    concept Streamable = requires (std::ostream& os, Arg&& arg) { { os << std::forward<Arg> (arg) } -> std::same_as<std::ostream&>; };
+
     // @todo Make Logger a true logger. Adding buffer member, and saving the content into a file!
 
     class RLIB Logger
@@ -32,6 +53,7 @@ namespace Recurring::Console
         template <typename... Args>
         static void
         print (Args&&... args)
+            requires (Streamable<Args> && ...)
         {
             ((std::cout << ... << args) << '\n');
         }
@@ -39,6 +61,7 @@ namespace Recurring::Console
         template <typename... Args>
         static void
         print (const Card& card, Args&&... args)
+            requires (Streamable<Args> && ...)
         {
             (((std::cout << '[' << card.color << card.title << Text::Color::RESET << ']' << ' ') << ... << args) << '\n');
         }
