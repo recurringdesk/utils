@@ -9,7 +9,7 @@
 #include <recurring/console/logger.hpp>
 #include <recurring/core/window.hpp>
 
-using Recurring::System::Window;
+using Window = Recurring::System::OpenGL::Context;
 using Log = Recurring::Console::Logger;
 using Recurring::Core::Node;
 using namespace Recurring::Math;
@@ -28,6 +28,8 @@ public:
     process () override
     {
         // legacy opengl just for testing it - 2025-08-18
+        glClear (GL_COLOR_BUFFER_BIT);
+        glClearColor (0.1f, 0.3f, 0.1f, 1.0f);
 
         glBegin (GL_TRIANGLES);
         glVertex2i (1, 1);
@@ -51,17 +53,28 @@ protected:
 public:
 };
 
+void
+my_framebuffer_size_callback (Handle* id, int width, int height)
+{
+    glViewport (0, 0, width, height);
+}
+
 int
 main ()
 {
-
-    Log::print (Log::INFO, "Hello, world!");
     MyWindow window;
-    if (const int error = window.create (800, 600, "Generic window"); error != Recurring::Error::SUCCESS)
+    Log::print (Log::INFO, "Hello, world!");
+
+    /* 2025-08-19
+    Idk if ハローワールド is hello, world! lol
+    */
+
+    if (const int error = window.create (800, 600, "Hello, world! | ハローワールド | Olá, mundo!"); error != Recurring::Error::SUCCESS)
         return error;
     window.create (800, 800);
+    window.set_framebuffer_size_callback (my_framebuffer_size_callback);
     MyNode* my_node = new MyNode;
     window.run (my_node);
 
-    return 0;
+    return Recurring::Error::SUCCESS;
 }

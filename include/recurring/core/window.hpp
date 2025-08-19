@@ -1,18 +1,17 @@
-#ifndef RE_CORE_WINDOW
-#define RE_CORE_WINDOW
+#ifndef RE_CORE_WINDOW_GUARD
+#define RE_CORE_WINDOW_GUARD
 
-#include "node.hpp"
 #include <recurring/core/node.hpp>
 #include <recurring/utils/string.hpp>
 
 typedef struct GLFWwindow Handle;
 
-namespace Recurring::System
+namespace Recurring::System::OpenGL
 {
     // Idk if Window must be part of system. Yeah, it's a wrapper for GLFW,
     // because it's gonna be painful to implement Wayland, X11 or even WinAPI from scratch. - 2025-17-08
 
-    class RLIB Window
+    class RLIB Context
     {
         String title = nullptr;
         Handle* id = nullptr;
@@ -23,8 +22,11 @@ namespace Recurring::System
         internal_loop (Core::Node* node);
 
     public:
-        Window ();
-        ~Window ();
+        Context ();
+        ~Context ();
+
+        typedef void (*framebuffer_size) (Handle* id, int width, int height);
+        int set_framebuffer_size_callback (framebuffer_size) const;
 
         /**
          * @brief Creates a window using GLFW!
@@ -34,7 +36,8 @@ namespace Recurring::System
          * @param title The text in the window header!
          * @return int
          */
-        int create (int width, int height, const char* title = nullptr);
+        int
+        create (int width, int height, const char* title = nullptr);
 
         /**
          * @brief Will serve as "v-sync". Idk, it's the same ideia.
@@ -60,6 +63,6 @@ namespace Recurring::System
         virtual int
         run (Core::Node* node = nullptr);
     };
-} // namespace Recurring::System
+} // namespace Recurring::System::OpenGL
 
-#endif // RE_CORE_WINDOW
+#endif // RE_CORE_WINDOW_GUARD

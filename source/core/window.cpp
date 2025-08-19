@@ -7,10 +7,10 @@
 
 using Log = Recurring::Console::Logger;
 
-namespace Recurring::System
+namespace Recurring::System::OpenGL
 {
     RLIB void
-    Window::internal_loop (Core::Node* node)
+    Context::internal_loop (Core::Node* node)
     {
         node->process ();
         swap_buffers ();
@@ -18,7 +18,7 @@ namespace Recurring::System
     }
 
     RLIB int
-    Window::run (Core::Node* node)
+    Context::run (Core::Node* node)
     {
         if (!get_id ())
         {
@@ -51,19 +51,19 @@ namespace Recurring::System
     }
 
     RLIB Handle*
-    Window::get_id () const
+    Context::get_id () const
     {
         return id;
     }
 
     RLIB void
-    Window::set_id (Handle* id)
+    Context::set_id (Handle* id)
     {
         this->id = id;
     }
 
     RLIB
-    Window::Window ()
+    Context::Context ()
     {
         // Do you think creating an OpenGL app is the most funny thing?
         // No, it's not. It's painful. But I love being masochist.
@@ -75,7 +75,7 @@ namespace Recurring::System
         Log::print (Log::WARNING, "Using 'class Window' is so funny!");
     }
 
-    RLIB Window::~Window ()
+    RLIB Context::~Context ()
     {
         // Do I really need this warning? YES.
 
@@ -86,7 +86,7 @@ namespace Recurring::System
     }
 
     RLIB int
-    Window::create (int width, int height, const char* title)
+    Context::create (int width, int height, const char* title)
     {
         // Added the next warning because it looks cool. Idk, it's useless.
         // At the first moment I thought "hum, cool. I'm gonna use it because
@@ -116,14 +116,23 @@ namespace Recurring::System
         return Error::SUCCESS;
     }
 
+    RLIB int
+    Context::set_framebuffer_size_callback (framebuffer_size callback) const
+    {
+        if (!get_id ())
+            return Error::NO_WINDOW_TO_SET_FRAMEBUFFER_SIZE_CALLBACK;
+        glfwSetFramebufferSizeCallback (get_id (), callback);
+        return Error::SUCCESS;
+    }
+
     RLIB void
-    Window::swap_interval (int value) const
+    Context::swap_interval (int value) const
     {
         glfwSwapInterval (value);
     }
 
     RLIB int
-    Window::make_context_current () const
+    Context::make_context_current () const
     {
         glfwMakeContextCurrent (this->id);
 
@@ -137,7 +146,7 @@ namespace Recurring::System
     }
 
     RLIB int
-    Window::destroy ()
+    Context::destroy ()
     {
         if (!id)
             return Error::NO_WINDOW_TO_DESTROY;
@@ -146,31 +155,31 @@ namespace Recurring::System
     }
 
     RLIB bool
-    Window::should_close () const
+    Context::should_close () const
     {
         return glfwWindowShouldClose (id);
     }
 
     RLIB void
-    Window::poll_events () const
+    Context::poll_events () const
     {
         glfwPollEvents ();
     }
 
     RLIB void
-    Window::wait_events () const
+    Context::wait_events () const
     {
         glfwWaitEvents ();
     }
 
     RLIB void
-    Window::swap_buffers () const
+    Context::swap_buffers () const
     {
         glfwSwapBuffers (id);
     }
 
     RLIB int
-    Window::set_title (const String& title)
+    Context::set_title (const String& title)
     {
         if (title.is_empty ())
             return Error::STRING_IS_EMPTY;
@@ -179,8 +188,8 @@ namespace Recurring::System
     }
 
     RLIB const String&
-    Window::get_title () const
+    Context::get_title () const
     {
         return title;
     }
-} // namespace Recurring::System
+} // namespace Recurring::System::OpenGL

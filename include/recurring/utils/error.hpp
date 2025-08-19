@@ -1,5 +1,6 @@
 #ifndef RE_UTILS_ERROR_GUARD
 #define RE_UTILS_ERROR_GUARD
+
 namespace Recurring
 {
     // Errors codes
@@ -15,6 +16,7 @@ namespace Recurring
         WINDOW_ALREADY_EXISTS,
         NO_WINDOW_TO_LOOP,
         NO_WINDOW_TO_DESTROY,
+        NO_WINDOW_TO_SET_FRAMEBUFFER_SIZE_CALLBACK,
         CONTEXT_WAS_NOT_MAKE,
         STRING_IS_EMPTY
     };

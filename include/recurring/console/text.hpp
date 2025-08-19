@@ -1,5 +1,5 @@
-#ifndef RE_TEXT_HEADER
-#define RE_TEXT_HEADER
+#ifndef RE_TEXT_GUARD
+#define RE_TEXT_GUARD
 
 namespace Recurring::Console::Text
 {
@@ -27,4 +27,4 @@ namespace Recurring::Console::Text
         inline constexpr const char* WARNING = "WARNING";
     } // namespace Title
 } // namespace Recurring::Console::Text
-#endif // RE_TEXT_HEADER
+#endif // RE_TEXT_GUARD
