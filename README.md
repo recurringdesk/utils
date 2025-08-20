@@ -2,7 +2,7 @@
 
 A C++ library in development for my projects and studies.
 
-For naming convention, it uses `snake_case`, ``SCREAMING_SNAKE_CASE` and `PascalCase` for variables and functions; constants; and namespaces, classes and structs.
+For naming convention, it uses `snake_case`, `SCREAMING_SNAKE_CASE` and `PascalCase` for variables and functions; constants; and namespaces, classes and structs.
 
 > [!IMPORTANT]
 > ReUtils uses nested namespaces and tries to enforce strong encapsulation. Avoiding the use of standard libraries in header files is somewhat difficult and may even be a bad design.
