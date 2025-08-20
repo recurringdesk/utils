@@ -13,7 +13,7 @@ namespace Recurring::System::OpenGL
 
     class RLIB Context
     {
-        String title = nullptr;
+        Utils::String title = nullptr;
         Handle* id = nullptr;
 
     protected:
@@ -56,8 +56,8 @@ namespace Recurring::System::OpenGL
         void poll_events () const;
         void wait_events () const;
         void swap_buffers () const;
-        int set_title (const String& title);
-        const String& get_title () const;
+        int set_title (const Utils::String& title);
+        const Utils::String& get_title () const;
         Handle* get_id () const;
         void set_id (Handle* id);
         virtual int

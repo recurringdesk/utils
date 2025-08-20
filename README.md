@@ -2,14 +2,33 @@
 
 A C++ library in development for my projects and studies.
 
+For naming convention, it uses `snake_case`, ``SCREAMING_SNAKE_CASE` and `PascalCase` for variables and functions; constants; and namespaces, classes and structs.
+
 > [!IMPORTANT]
 > ReUtils uses nested namespaces and tries to enforce strong encapsulation. Avoiding the use of standard libraries in header files is somewhat difficult and may even be a bad design.
 
-# ReConsole
+## String
+
+It's a simple string class like `std::string`.
+
+```cpp
+using Recurring::Utils::String;
+using Recurring::Console::Logger;
+using Recurring::Error;
+int
+main()
+{
+    String my_string = "Hello, world!";
+    Logger::print(my_string); // *Not implemented yet*
+    return Error::SUCCESS;
+}
+```
+
+## ReConsole
 
 Terminal utilities!
 
-## ReLogger
+### ReLogger
 
 Wrapper for `std::print` but with "cards" - cards are tags for messages.
 
@@ -26,7 +45,7 @@ main ()
 }
 ```
 
-# ReMath
+## ReMath
 
 A wrapper library for cmath with extras. Ugly, but it works.
 

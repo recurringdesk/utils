@@ -1,6 +1,6 @@
 #include <recurring/utils/string.hpp>
 
-namespace Recurring
+namespace Recurring::Utils
 {
     // I should learn how I can make constructors and assignments faster.
     // My anxiety is attacking me.
@@ -107,16 +107,15 @@ namespace Recurring
         return size;
     }
 
-    bool
+    RLIB bool
     String::operator!() const
     {
         // If data doesn't exist or the first element is '\0', return false.
 
-
         return data == nullptr || data[0] == '\0';
     }
 
-    bool
+    RLIB bool
     String::compare (const String& from, const String& to)
     {
         // The option I know at this point is: check if characters of the main
@@ -134,7 +133,7 @@ namespace Recurring
         return true;
     }
 
-    bool
+    RLIB bool
     String::compare (const char* from, const char* to)
     {
         // std::strcmp sucks. If "from" equals "to" return 0.
@@ -149,7 +148,7 @@ namespace Recurring
         return true;
     }
 
-    bool
+    RLIB bool
     String::is_empty () const
     {
         /*
@@ -179,4 +178,4 @@ namespace Recurring
     {
         return data[position];
     }
-} // namespace Recurring
+} // namespace Recurring::Utils

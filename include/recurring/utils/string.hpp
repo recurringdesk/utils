@@ -3,7 +3,7 @@
 
 #include <recurring/utils/api.hpp>
 
-namespace Recurring
+namespace Recurring::Utils
 {
     // A substitute for std::string and blah blah blah.
     // Try to use it in the whole project! - 2025-08-17

@@ -39,7 +39,7 @@ namespace Recurring::Console
 
     class RLIB Logger
     {
-        String buffer; // For each print from an instance of Logger, it prints here.
+        Utils::String buffer; // For each print from an instance of Logger, it prints here.
 
     public:
         // The "kind" of any println. It's gonna be putted on the left side.

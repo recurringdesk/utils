@@ -179,7 +179,7 @@ namespace Recurring::System::OpenGL
     }
 
     RLIB int
-    Context::set_title (const String& title)
+    Context::set_title (const Utils::String& title)
     {
         if (title.is_empty ())
             return Error::STRING_IS_EMPTY;
@@ -187,7 +187,7 @@ namespace Recurring::System::OpenGL
         return Error::SUCCESS;
     }
 
-    RLIB const String&
+    RLIB const Utils::String&
     Context::get_title () const
     {
         return title;

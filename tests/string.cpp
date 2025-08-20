@@ -1,7 +1,7 @@
 #include <iostream>
 #include <recurring/utils/string.hpp>
 
-using String = Recurring::String;
+using String = Recurring::Utils::String;
 
 int
 main ()
@@ -40,7 +40,7 @@ main ()
         std::cout << "string isn't empty\n";
     }
 
-    std::cout << "char at 2 -> " << string.char_at(1) << '\n';
+    std::cout << "char at 2 -> " << string.char_at (1) << '\n';
 
     return 0;
 }
