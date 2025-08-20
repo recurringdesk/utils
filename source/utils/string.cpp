@@ -1,4 +1,3 @@
-#include <cstring>
 #include <recurring/utils/string.hpp>
 
 namespace Recurring
@@ -8,13 +7,30 @@ namespace Recurring
 
     RLIB
     String::String ()
+        : data (nullptr), size (0)
     {
+        /*
+
+        The next lines are horrible. Why did I do this? - 2025-08-2025
+
         // Creating an empty char, because if data==null it can lead to strange
         // stuff idk what
 
         size = 0;
         data = new char[size + 1];
         data[size] = '\0';
+        */
+    }
+
+    RLIB void
+    String::copy (char* to, const char* from)
+    {
+        int size = length (from);
+
+        for (unsigned i = 0; i < size; ++i)
+            to[i] = from[i];
+
+        to[size] = '\0';
     }
 
     RLIB
@@ -29,10 +45,8 @@ namespace Recurring
         }
         size = length (from.raw ());
         data = new char[size + 1];
-        for (unsigned i = 0; i < size; ++i)
-        {
-            data[i] = from.raw ()[i];
-        }
+
+        copy (data, from.raw ());
     }
 
     RLIB
@@ -47,10 +61,7 @@ namespace Recurring
         }
         size = length (from);
         data = new char[size + 1];
-        for (unsigned i = 0; i < size; ++i)
-        {
-            data[i] = from[i];
-        }
+        copy (data, from);
     }
 
     RLIB String&
@@ -59,11 +70,7 @@ namespace Recurring
         delete[] data;
         size = length (from);
         data = new char[size + 1];
-        for (unsigned i = 0; i < size; ++i)
-        {
-            data[i] = from[i];
-        }
-        data[size] = '\0'; // I had forgotten this. Every `const char*` has an `\0` - 2025-08-17
+        copy (data, from);
         return *this;
     }
 
@@ -101,6 +108,15 @@ namespace Recurring
     }
 
     bool
+    String::operator!() const
+    {
+        // If data doesn't exist or the first element is '\0', return false.
+
+
+        return data == nullptr || data[0] == '\0';
+    }
+
+    bool
     String::compare (const String& from, const String& to)
     {
         // The option I know at this point is: check if characters of the main
@@ -108,7 +124,14 @@ namespace Recurring
         // optimization, actually. Unless I use multithread, or some kinda CPU
         // instruction. Or I can just use a standard library for this.
 
-        return std::strcmp (from.raw (), to.raw ());
+        if (!from || !to)
+            return false;
+
+        for (int index = 0; from.raw ()[index] != '\0'; ++index)
+            if (from.raw ()[index] != to.raw ()[index])
+                return false;
+
+        return true;
     }
 
     bool
@@ -118,12 +141,22 @@ namespace Recurring
 
         if (!from || !to)
             return false;
-        return std::strcmp (from, to) ? 0 : 1;
+
+        for (int index = 0; from[index] != '\0'; ++index)
+            if (from[index] != to[index])
+                return false;
+
+        return true;
     }
 
     bool
     String::is_empty () const
     {
+        /*
+        The next code in this comment is redundant.
+        compare sends a false signal if data is nullptr, why
+        am I double checking this? - 2025-08-20
+
         // If data doesn't exist, it's empty.
 
         if (data == nullptr)
@@ -132,8 +165,18 @@ namespace Recurring
         // If data is '\0', it's empty.
         // Else, it's not empty.
 
+        */
+
+        // If data's nullptr or "", return false.
+        // else, it's ROGER. - 2025-08-25
         const bool is_empty = compare (data, "");
 
         return is_empty;
+    }
+
+    RLIB char&
+    String::char_at (unsigned int position) const
+    {
+        return data[position];
     }
 } // namespace Recurring

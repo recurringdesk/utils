@@ -8,14 +8,18 @@ namespace Recurring
     // A substitute for std::string and blah blah blah.
     // Try to use it in the whole project! - 2025-08-17
 
-    struct RLIB String
+    class RLIB String
     {
+    public:
         String ();
         String (const char* from);
         String (const String& from);
         ~String ();
 
+        static void copy (char* to, const char* from);
+
         String& operator= (const char* from);
+        bool operator!() const;
 
         bool is_empty () const;
 
@@ -45,12 +49,14 @@ namespace Recurring
         void push_back (const char* from);
         void push_back (const String& from);
 
+        char& char_at (unsigned int position) const;
+
     private:
         // The real and current storaged data. - 2025-08-17
-        char* data = nullptr;
+        char* data;
         // The string's size. Not needing to recalculate
         // stuff every time when calling `length` - 2025-08-17
-        unsigned size = 0;
+        unsigned size;
     };
 } // namespace Recurring
 
