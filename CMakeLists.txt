@@ -7,7 +7,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_subdirectory(dependencies/glfw)
 
-include_directories(include)
 add_compile_definitions(RLIB_EXPORT)
 
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
@@ -26,6 +25,8 @@ set(RECURRING_UI_SOURCE
 
 add_library(recore SHARED ${RECURRING_CORE_SOURCE})
 add_library(regui SHARED ${RECURRING_UI_SOURCE})
+target_include_directories(recore PUBLIC include)
+target_include_directories(regui PUBLIC include)
 target_link_libraries(regui PUBLIC glfw glew32 opengl32 recore)
 
 enable_testing()
