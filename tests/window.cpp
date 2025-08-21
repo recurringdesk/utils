@@ -1,4 +1,4 @@
-#include "recurring/math/functions/square_root.hpp"
+#include "recurring/math/functions/basic.hpp"
 #include "recurring/utils/error.hpp"
 #include <recurring/math/trigonometry.hpp>
 
