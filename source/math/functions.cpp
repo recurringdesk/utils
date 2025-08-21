@@ -1,6 +1,6 @@
 #include <recurring/math/constants.hpp>
 #include <recurring/math/functions/convert.hpp>
-#include <recurring/math/functions/square_root.hpp>
+#include <recurring/math/functions/basic.hpp>
 #include <recurring/math/functions/trigonometric_functions.hpp>
 #include <xmmintrin.h>
 
@@ -13,6 +13,20 @@
 
 namespace Recurring::Math
 {
+    template <>
+    RLIB float
+    pow (float base, float exponent)
+    {
+        /*
+        if (exponent == 0.0f)
+            return 1.0f;
+        exponent must multiply base by its value.
+        if exponent = 4, base * base * base * base - 2025-08-20
+        */
+
+        return std::powf (base, exponent);
+    }
+
     template <>
     RLIB float
     radians_to_degrees (float angle)

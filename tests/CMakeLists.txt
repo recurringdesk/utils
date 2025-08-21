@@ -9,3 +9,7 @@ add_test(NAME print COMMAND print)
 add_executable(window ./window.cpp)
 target_link_libraries(window PRIVATE regui recore)
 add_test(NAME window COMMAND window)
+
+add_executable(math math.cpp)
+target_link_libraries(math PRIVATE recore)
+add_test(NAME math COMMAND math)
