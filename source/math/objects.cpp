@@ -1,6 +1,6 @@
-#include <recurring/math/functions/basic.hpp>
-#include <recurring/math/objects/vector2d.hpp>
-#include <recurring/math/objects/vector3d.hpp>
+#include <rutils/math/functions/basic.hpp>
+#include <rutils/math/objects/vector2d.hpp>
+#include <rutils/math/objects/vector3d.hpp>
 
 namespace Recurring::Math
 {

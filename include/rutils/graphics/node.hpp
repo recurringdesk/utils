@@ -1,7 +1,7 @@
 #ifndef RE_NODE_GUARD
 #define RE_NODE_GUARD
 
-#include <recurring/utils/api.hpp>
+#include <rutils/core/api.hpp>
 
 namespace Recurring::Core
 {

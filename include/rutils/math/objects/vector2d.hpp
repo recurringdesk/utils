@@ -1,7 +1,7 @@
 #ifndef RE_MATH_VECTOR2D_GUARD
 #define RE_MATH_VECTOR2D_GUARD
 
-#include <recurring/utils/api.hpp>
+#include <rutils/core/api.hpp>
 
 namespace Recurring::Math
 {

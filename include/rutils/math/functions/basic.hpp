@@ -1,7 +1,7 @@
 #ifndef RE_BASIC_GUARD
 #define RE_BASIC_GUARD
 
-#include <recurring/utils/api.hpp>
+#include <rutils/core/api.hpp>
 
 namespace Recurring::Math
 {

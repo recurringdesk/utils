@@ -1,7 +1,7 @@
 #ifndef RE_CARD_GUARD
 #define RE_CARD_GUARD
 
-#include <recurring/utils/api.hpp>
+#include <rutils/core/api.hpp>
 
 namespace Recurring::Console
 {

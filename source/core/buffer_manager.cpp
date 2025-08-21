@@ -1,4 +1,4 @@
-#include <recurring/core/buffer_manager.hpp>
+#include <rutils/graphics/buffer_manager.hpp>
 
 namespace Recurring::Core::Graphics
 {

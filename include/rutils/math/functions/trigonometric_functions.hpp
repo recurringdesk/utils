@@ -1,7 +1,7 @@
 #ifndef RE_TRIGO_FUNC_GUARD
 #define RE_TRIGO_FUNC_GUARD
 
-#include <recurring/utils/api.hpp>
+#include <rutils/core/api.hpp>
 
 namespace Recurring::Math
 {

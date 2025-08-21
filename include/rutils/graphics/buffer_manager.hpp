@@ -2,7 +2,7 @@
 #define RE_CORE_BF_MNGR_GUARD
 
 #include <GL/glew.h>
-#include <recurring/utils/api.hpp>
+#include <rutils/core/api.hpp>
 
 namespace Recurring::Core::Graphics
 {

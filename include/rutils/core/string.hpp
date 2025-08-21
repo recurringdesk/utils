@@ -1,7 +1,7 @@
 #ifndef RE_UTILS_STRING_GUARD
 #define RE_UTILS_STRING_GUARD
 
-#include <recurring/utils/api.hpp>
+#include <rutils/core/api.hpp>
 
 namespace Recurring::Utils
 {
@@ -58,6 +58,6 @@ namespace Recurring::Utils
         // stuff every time when calling `length` - 2025-08-17
         unsigned size;
     };
-} // namespace Recurring
+} // namespace Recurring::Utils
 
 #endif // RE_UTILS_STRING_GUARD

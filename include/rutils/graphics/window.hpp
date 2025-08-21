@@ -1,8 +1,8 @@
 #ifndef RE_CORE_WINDOW_GUARD
 #define RE_CORE_WINDOW_GUARD
 
-#include <recurring/core/node.hpp>
-#include <recurring/utils/string.hpp>
+#include <rutils/graphics/node.hpp>
+#include <rutils/core/string.hpp>
 
 typedef struct GLFWwindow Handle;
 

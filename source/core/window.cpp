@@ -1,9 +1,9 @@
 #include <GL/glew.h>
-#include <recurring/utils/error.hpp>
+#include <rutils/core/error.hpp>
 
 #include <GLFW/glfw3.h> // I love wrapping libraries to my own library because. - 2025-08-18
-#include <recurring/console/logger.hpp>
-#include <recurring/core/window.hpp>
+#include <rutils/console/logger.hpp>
+#include <rutils/graphics/window.hpp>
 
 using Log = Recurring::Console::Logger;
 
