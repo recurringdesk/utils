@@ -26,22 +26,16 @@ namespace Recurring::System::OpenGL
             return Error::NO_WINDOW_TO_LOOP;
         }
 
-        LOG_DEBUG ("There is a window")
-
         if (!glfwGetCurrentContext ())
         {
-            Log::print (Log::ERROR, "No window to loop.");
+            Log::print (Log::ERROR, "No current context!");
             return Error::CONTEXT_WAS_NOT_MAKE;
         }
-
-        LOG_DEBUG ("There is a context");
 
         if (!node)
             node = new Core::Node;
 
         node->ready ();
-
-        LOG_DEBUG ("Node is ready")
 
         while (!should_close ())
         {

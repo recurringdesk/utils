@@ -1,4 +1,4 @@
-#include <recurring/math/functions/square_root.hpp>
+#include <recurring/math/functions/basic.hpp>
 #include <recurring/math/objects/vector2d.hpp>
 #include <recurring/math/objects/vector3d.hpp>
 
