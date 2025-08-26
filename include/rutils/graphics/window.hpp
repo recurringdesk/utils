@@ -1,8 +1,9 @@
 #ifndef RE_CORE_WINDOW_GUARD
 #define RE_CORE_WINDOW_GUARD
 
-#include <rutils/graphics/node.hpp>
 #include <rutils/core/string.hpp>
+#include <rutils/graphics/color.hpp>
+#include <rutils/graphics/node.hpp>
 
 typedef struct GLFWwindow Handle;
 
@@ -15,6 +16,7 @@ namespace Recurring::System::OpenGL
     {
         Utils::String title = nullptr;
         Handle* id = nullptr;
+        Core::Node* current_node = nullptr;
 
     protected:
         int make_context_current () const;
@@ -22,7 +24,7 @@ namespace Recurring::System::OpenGL
         internal_loop (Core::Node* node);
 
     public:
-        Context ();
+        Context (Core::Node* node = nullptr);
         ~Context ();
 
         typedef void (*framebuffer_size) (Handle* id, int width, int height);
@@ -61,7 +63,8 @@ namespace Recurring::System::OpenGL
         Handle* get_id () const;
         void set_id (Handle* id);
         virtual int
-        run (Core::Node* node = nullptr);
+        run ();
+        void clear_color (const Color& color);
     };
 } // namespace Recurring::System::OpenGL
 

@@ -18,7 +18,7 @@ namespace Recurring::System::OpenGL
     }
 
     RLIB int
-    Context::run (Core::Node* node)
+    Context::run ()
     {
         if (!get_id ())
         {
@@ -32,15 +32,16 @@ namespace Recurring::System::OpenGL
             return Error::CONTEXT_WAS_NOT_MAKE;
         }
 
-        if (!node)
-            node = new Core::Node;
+        if (!current_node)
+            current_node = new Core::Node;
 
-        node->ready ();
+        current_node->ready ();
 
         while (!should_close ())
         {
-            internal_loop (node);
+            internal_loop (current_node);
         }
+
         return Error::SUCCESS;
     }
 
@@ -57,7 +58,8 @@ namespace Recurring::System::OpenGL
     }
 
     RLIB
-    Context::Context ()
+    Context::Context (Core::Node* node)
+        : current_node (node)
     {
         // Do you think creating an OpenGL app is the most funny thing?
         // No, it's not. It's painful. But I love being masochist.
@@ -71,12 +73,18 @@ namespace Recurring::System::OpenGL
 
     RLIB Context::~Context ()
     {
-        // Do I really need this warning? YES.
+        /* 64::00 | 2025-08-26 20:18:10
+        For some random reason, deleting current_node
+        even it's being allocated it gives me a segfault.
+        I need fix this as soon.
+        */
 
-        Log::print (Log::WARNING, "Deleting window");
+        if (current_node)
+            delete current_node;
         if (id)
             destroy ();
         glfwTerminate ();
+        Log::print (Log::WARNING, "Window was deleted");
     }
 
     RLIB int
@@ -137,6 +145,13 @@ namespace Recurring::System::OpenGL
             return Error::GLEW_NOT_INITED;
 
         return Error::SUCCESS;
+    }
+
+    RLIB void
+    Context::clear_color (const Color& color)
+    {
+        glClear (GL_COLOR_BUFFER_BIT);
+        glClearColor (color.red, color.green, color.blue, color.alpha);
     }
 
     RLIB int
