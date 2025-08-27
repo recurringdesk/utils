@@ -1,11 +1,11 @@
-#ifndef RE_MATH_VECTOR3D_GUARD
-#define RE_MATH_VECTOR3D_GUARD
+#ifndef VECTOR3D_GUARD
+#define VECTOR3D_GUARD
 
 #include <rutils/core/api.hpp>
 
 namespace Recurring::Math
 {
-    struct RLIB Vector3D
+    struct Vector3D
     {
         float x, y, z;
         float length () const;
@@ -14,4 +14,4 @@ namespace Recurring::Math
         Vector3D operator- (const Vector3D& right_hand_side) const;
     };
 } // namespace Recurring::Math
-#endif // RE_MATH_VECTOR3D_GUARD
+#endif

@@ -1,21 +1,29 @@
-#ifndef RE_CORE_WINDOW_GUARD
-#define RE_CORE_WINDOW_GUARD
+#ifndef WINDOW_GUARD
+#define WINDOW_GUARD
 
 #include <rutils/core/string.hpp>
 #include <rutils/graphics/color.hpp>
 #include <rutils/graphics/node.hpp>
 
-typedef struct GLFWwindow Handle;
+/* 64::00 | 2025-08-27 13:59:43
+---
+I plan not using glfw in the future.
+glfw is awesome and I can even port it to macos,
+but I feel that sometime it's gonna limit
+myself. Not now, not even in 5 years... Maybe never.
+*/
+
+typedef struct GLFWwindow _RE_INTERNAL_WindowHandle;
 
 namespace Recurring::System::OpenGL
 {
     // Idk if Window must be part of system. Yeah, it's a wrapper for GLFW,
     // because it's gonna be painful to implement Wayland, X11 or even WinAPI from scratch. - 2025-17-08
 
-    class RLIB Context
+    class Context
     {
         Utils::String title = nullptr;
-        Handle* id = nullptr;
+        _RE_INTERNAL_WindowHandle* id = nullptr;
         Core::Node* current_node = nullptr;
 
     protected:
@@ -27,7 +35,7 @@ namespace Recurring::System::OpenGL
         Context (Core::Node* node = nullptr);
         ~Context ();
 
-        typedef void (*framebuffer_size) (Handle* id, int width, int height);
+        typedef void (*framebuffer_size) (_RE_INTERNAL_WindowHandle* id, int width, int height);
         int set_framebuffer_size_callback (framebuffer_size) const;
 
         /**
@@ -60,12 +68,12 @@ namespace Recurring::System::OpenGL
         void swap_buffers () const;
         int set_title (const Utils::String& title);
         const Utils::String& get_title () const;
-        Handle* get_id () const;
-        void set_id (Handle* id);
+        _RE_INTERNAL_WindowHandle* get_id () const;
+        void set_id (_RE_INTERNAL_WindowHandle* id);
         virtual int
         run ();
         void clear_color (const Color& color);
     };
 } // namespace Recurring::System::OpenGL
 
-#endif // RE_CORE_WINDOW_GUARD
+#endif

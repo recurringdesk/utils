@@ -1,12 +1,12 @@
-#ifndef RE_CORE_BF_MNGR_GUARD
-#define RE_CORE_BF_MNGR_GUARD
+#ifndef BUFFER_MANAGER_GUARD
+#define BUFFER_MANAGER_GUARD
 
 #include <GL/glew.h>
 #include <rutils/core/api.hpp>
 
 namespace Recurring::Core::Graphics
 {
-    struct RLIB BufferObject
+    struct BufferObject
     {
         GLuint id;
         GLsizeiptr size;
@@ -20,7 +20,7 @@ namespace Recurring::Core::Graphics
         void unbind () const;
     };
 
-    class RLIB BufferManager
+    class BufferManager
     {
         BufferObject vertex_buffer;
 
@@ -29,4 +29,4 @@ namespace Recurring::Core::Graphics
     };
 } // namespace Recurring::Core::Graphics
 
-#endif // RE_CORE_BF_MNGR_GUARD
+#endif

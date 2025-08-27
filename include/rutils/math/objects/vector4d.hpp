@@ -1,11 +1,11 @@
-#ifndef RE_MATH_VECTOR4D_GUARD
-#define RE_MATH_VECTOR4D_GUARD
+#ifndef VECTOR4D_GUARD
+#define VECTOR4D_GUARD
 
 #include <rutils/core/api.hpp>
 
 namespace Recurring::Math
 {
-    struct RLIB Vector4D
+    struct Vector4D
     {
         float x, y, z, w;
         float length () const;
@@ -15,4 +15,4 @@ namespace Recurring::Math
     };
 } // namespace Recurring::Math
 
-#endif // RE_MATH_VECTOR4D_GUARD
+#endif

@@ -1,11 +1,11 @@
-#ifndef RE_CARD_GUARD
-#define RE_CARD_GUARD
+#ifndef CARD_GUARD
+#define CARD_GUARD
 
 #include <rutils/core/api.hpp>
 
 namespace Recurring::Console
 {
-    struct RLIB Card
+    struct Card
     {
 
         const char* color;
@@ -13,4 +13,4 @@ namespace Recurring::Console
     };
 } // namespace Recurring::Console
 
-#endif // RE_CARD_GUARD
+#endif

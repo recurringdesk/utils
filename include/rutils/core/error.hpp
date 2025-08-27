@@ -1,5 +1,5 @@
-#ifndef RE_UTILS_ERROR_GUARD
-#define RE_UTILS_ERROR_GUARD
+#ifndef ERROR_GUARD
+#define ERROR_GUARD
 
 namespace Recurring
 {
@@ -21,4 +21,4 @@ namespace Recurring
         STRING_IS_EMPTY
     };
 } // namespace Recurring
-#endif // RE_UTILS_ERROR_GUARD
+#endif

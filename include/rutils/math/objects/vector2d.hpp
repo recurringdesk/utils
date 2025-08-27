@@ -1,11 +1,11 @@
-#ifndef RE_MATH_VECTOR2D_GUARD
-#define RE_MATH_VECTOR2D_GUARD
+#ifndef VECTOR2D_GUARD
+#define VECTOR2D_GUARD
 
 #include <rutils/core/api.hpp>
 
 namespace Recurring::Math
 {
-    struct RLIB Vector2D
+    struct Vector2D
     {
         float x, y;
         float length () const;
@@ -15,4 +15,4 @@ namespace Recurring::Math
         const Vector2D& operator= (const Vector2D& right_hand_size);
     };
 } // namespace Recurring::Math
-#endif // RE_MATH_VECTOR2D_GUARD
+#endif

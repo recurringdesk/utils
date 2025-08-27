@@ -5,11 +5,17 @@
 #include <rutils/console/logger.hpp>
 #include <rutils/graphics/window.hpp>
 
-using Log = Recurring::Console::Logger;
+void
+_RE_INTERNAL_set_framebuffer_callback (_RE_INTERNAL_WindowHandle*, int width, int height)
+{
+    glViewport (0, 0, width, height);
+}
 
 namespace Recurring::System::OpenGL
 {
-    RLIB void
+    using Recurring::Console::Logger;
+
+    void
     Context::internal_loop (Core::Node* node)
     {
         node->process ();
@@ -17,18 +23,18 @@ namespace Recurring::System::OpenGL
         wait_events ();
     }
 
-    RLIB int
+    int
     Context::run ()
     {
         if (!get_id ())
         {
-            Log::print (Log::ERROR, "No window to loop!");
+            Logger::print (Logger::ERROR, "No window to loop!");
             return Error::NO_WINDOW_TO_LOOP;
         }
 
         if (!glfwGetCurrentContext ())
         {
-            Log::print (Log::ERROR, "No current context!");
+            Logger::print (Logger::ERROR, "No current context!");
             return Error::CONTEXT_WAS_NOT_MAKE;
         }
 
@@ -45,19 +51,18 @@ namespace Recurring::System::OpenGL
         return Error::SUCCESS;
     }
 
-    RLIB Handle*
+    _RE_INTERNAL_WindowHandle*
     Context::get_id () const
     {
         return id;
     }
 
-    RLIB void
-    Context::set_id (Handle* id)
+    void
+    Context::set_id (_RE_INTERNAL_WindowHandle* id)
     {
         this->id = id;
     }
 
-    RLIB
     Context::Context (Core::Node* node)
         : current_node (node)
     {
@@ -68,10 +73,10 @@ namespace Recurring::System::OpenGL
         // Programming things I'll never use in the real world.
         // Bjarne certainly wouldn't pride of me. - 2025-08-18
 
-        Log::print (Log::WARNING, "Using 'class Window' is so funny!");
+        Logger::print (Logger::WARNING, "Using 'class Window' is so funny!");
     }
 
-    RLIB Context::~Context ()
+    Context::~Context ()
     {
         /* 64::00 | 2025-08-26 20:18:10
         For some random reason, deleting current_node
@@ -84,10 +89,10 @@ namespace Recurring::System::OpenGL
         if (id)
             destroy ();
         glfwTerminate ();
-        Log::print (Log::WARNING, "Window was deleted");
+        Logger::print (Logger::WARNING, "Window was deleted");
     }
 
-    RLIB int
+    int
     Context::create (int width, int height, const char* title)
     {
         // Added the next warning because it looks cool. Idk, it's useless.
@@ -99,7 +104,7 @@ namespace Recurring::System::OpenGL
         if (get_id ())
             return Error::WINDOW_ALREADY_EXISTS;
 
-        Log::print (Log::WARNING, "Creating window!");
+        Logger::print (Logger::WARNING, "Creating window!");
         if (!title)
             this->title = "Untitled";
         else
@@ -115,10 +120,11 @@ namespace Recurring::System::OpenGL
         if (const int error = make_context_current (); error != Error::SUCCESS)
             return error;
 
+        set_framebuffer_size_callback (_RE_INTERNAL_set_framebuffer_callback);
         return Error::SUCCESS;
     }
 
-    RLIB int
+    int
     Context::set_framebuffer_size_callback (framebuffer_size callback) const
     {
         if (!get_id ())
@@ -127,13 +133,13 @@ namespace Recurring::System::OpenGL
         return Error::SUCCESS;
     }
 
-    RLIB void
+    void
     Context::swap_interval (int value) const
     {
         glfwSwapInterval (value);
     }
 
-    RLIB int
+    int
     Context::make_context_current () const
     {
         glfwMakeContextCurrent (this->id);
@@ -147,14 +153,14 @@ namespace Recurring::System::OpenGL
         return Error::SUCCESS;
     }
 
-    RLIB void
+    void
     Context::clear_color (const Color& color)
     {
         glClear (GL_COLOR_BUFFER_BIT);
         glClearColor (color.red, color.green, color.blue, color.alpha);
     }
 
-    RLIB int
+    int
     Context::destroy ()
     {
         if (!id)
@@ -163,31 +169,31 @@ namespace Recurring::System::OpenGL
         return Error::SUCCESS;
     }
 
-    RLIB bool
+    bool
     Context::should_close () const
     {
         return glfwWindowShouldClose (id);
     }
 
-    RLIB void
+    void
     Context::poll_events () const
     {
         glfwPollEvents ();
     }
 
-    RLIB void
+    void
     Context::wait_events () const
     {
         glfwWaitEvents ();
     }
 
-    RLIB void
+    void
     Context::swap_buffers () const
     {
         glfwSwapBuffers (id);
     }
 
-    RLIB int
+    int
     Context::set_title (const Utils::String& title)
     {
         if (title.is_empty ())
@@ -196,7 +202,7 @@ namespace Recurring::System::OpenGL
         return Error::SUCCESS;
     }
 
-    RLIB const Utils::String&
+    const Utils::String&
     Context::get_title () const
     {
         return title;

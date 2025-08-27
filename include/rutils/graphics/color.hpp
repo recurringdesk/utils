@@ -1,5 +1,7 @@
-#ifndef RE_COLOR_GUARD
-#define RE_COLOR_GUARD
+#ifndef COLOR_GUARD
+#define COLOR_GUARD
+
+#include <rutils/core/api.hpp>
 
 namespace Recurring
 {
@@ -26,4 +28,4 @@ namespace Recurring
         }
     };
 } // namespace Recurring
-#endif // RE_COLOR_GUARD
+#endif

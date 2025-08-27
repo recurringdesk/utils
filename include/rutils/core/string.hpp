@@ -1,5 +1,5 @@
-#ifndef RE_UTILS_STRING_GUARD
-#define RE_UTILS_STRING_GUARD
+#ifndef STRING_GUARD
+#define STRING_GUARD
 
 #include <rutils/core/api.hpp>
 
@@ -8,7 +8,7 @@ namespace Recurring::Utils
     // A substitute for std::string and blah blah blah.
     // Try to use it in the whole project! - 2025-08-17
 
-    class RLIB String
+    class String
     {
     public:
         String ();
@@ -60,4 +60,4 @@ namespace Recurring::Utils
     };
 } // namespace Recurring::Utils
 
-#endif // RE_UTILS_STRING_GUARD
+#endif

@@ -1,5 +1,5 @@
-#ifndef RE_NODE_GUARD
-#define RE_NODE_GUARD
+#ifndef NODE_GUARD
+#define NODE_GUARD
 
 #include <rutils/core/api.hpp>
 
@@ -7,7 +7,7 @@ namespace Recurring::Core
 {
     // class Node must be like Godot's Node. Not identical, but the same ideia. - 2025-08-17
 
-    class RLIB Node
+    class Node
     {
     public:
         // Idk what `virtual ~Node() = default` means. It's an empty desconstructor where
@@ -16,18 +16,12 @@ namespace Recurring::Core
         Node () = default;
         virtual ~Node () = default;
 
-        virtual void
-        ready ()
-        {
-        }
+        virtual void ready ();
 
         // `virtual void process()` is a function which is gonna
         // be called every time when a window is drew. - 2025-08-17
 
-        virtual void
-        process ()
-        {
-        }
+        virtual void process ();
     };
 } // namespace Recurring::Core
-#endif // RE_NODE_GUARD
+#endif

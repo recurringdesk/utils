@@ -1,15 +1,15 @@
-#ifndef RE_BASIC_GUARD
-#define RE_BASIC_GUARD
+#ifndef BASIC_GUARD
+#define BASIC_GUARD
 
 #include <rutils/core/api.hpp>
 
 namespace Recurring::Math
 {
     template <typename T>
-    T RLIB square_root (T value);
+    T square_root (T value);
 
     template <typename T>
-    T RLIB pow (T base, T exponent);
+    T pow (T base, T exponent);
 } // namespace Recurring::Math
 
-#endif // RE_BASIC_GUARD
+#endif

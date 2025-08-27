@@ -1,5 +1,11 @@
-#ifndef RE_API_GUARD
-#define RE_API_GUARD
+#ifndef API_GUARD
+#define API_GUARD
+
+/* 64::00 | 2025-08-27 15:15:29
+---
+This is the original code.
+
+----
 
 // This header exist because Windows is the worst OS I've ever used. - 2025-08-17
 
@@ -13,4 +19,11 @@
 #define RLIB
 #endif
 
-#endif // RE_API_GUARD
+----
+
+Decided to remove it and use a cmake command to make compile time easier.
+
+I didn't test it in Windows, so... Idk if this is working or not.
+*/
+
+#endif

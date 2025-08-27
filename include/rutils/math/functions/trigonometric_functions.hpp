@@ -1,5 +1,5 @@
-#ifndef RE_TRIGO_FUNC_GUARD
-#define RE_TRIGO_FUNC_GUARD
+#ifndef TRIGONOMETRIC_FUNCTIONS_GUARD
+#define TRIGONOMETRIC_FUNCTIONS_GUARD
 
 #include <rutils/core/api.hpp>
 
@@ -13,7 +13,7 @@ namespace Recurring::Math
      * @return T
      */
     template <typename T>
-    RLIB T sine (T angle);
+    T sine (T angle);
 
     /**
      * @brief The "Y" value of a circle
@@ -23,7 +23,7 @@ namespace Recurring::Math
      * @return T
      */
     template <typename T>
-    RLIB T cosine (T angle);
+    T cosine (T angle);
 
     /**
      * @brief Computes the tangent of the given angle (sin(angle) /
@@ -34,7 +34,7 @@ namespace Recurring::Math
      * @return T The tangent of the angle.
      */
     template <typename T>
-    RLIB T tangent (T angle);
+    T tangent (T angle);
 } // namespace Recurring::Math
 
-#endif // RE_TRIGO_FUNC_GUARD
+#endif

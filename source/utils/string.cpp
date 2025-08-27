@@ -5,7 +5,6 @@ namespace Recurring::Utils
     // I should learn how I can make constructors and assignments faster.
     // My anxiety is attacking me.
 
-    RLIB
     String::String ()
         : data (nullptr), size (0)
     {
@@ -22,7 +21,7 @@ namespace Recurring::Utils
         */
     }
 
-    RLIB void
+    void
     String::copy (char* to, const char* from)
     {
         int size = length (from);
@@ -33,7 +32,6 @@ namespace Recurring::Utils
         to[size] = '\0';
     }
 
-    RLIB
     String::String (const String& from)
     {
         if (from.raw () == nullptr)
@@ -49,7 +47,6 @@ namespace Recurring::Utils
         copy (data, from.raw ());
     }
 
-    RLIB
     String::String (const char* from)
     {
         if (from == nullptr)
@@ -64,7 +61,7 @@ namespace Recurring::Utils
         copy (data, from);
     }
 
-    RLIB String&
+    String&
     String::operator= (const char* from)
     {
         delete[] data;
@@ -74,26 +71,26 @@ namespace Recurring::Utils
         return *this;
     }
 
-    RLIB String::~String ()
+    String::~String ()
     {
         // Deleting data because memory leak. Obvious, and thank you for
         // reading this.
         delete[] data;
     }
 
-    RLIB const char*
+    const char*
     String::raw () const
     {
         return data;
     }
 
-    RLIB unsigned
+    unsigned
     String::length () const
     {
         return size;
     }
 
-    RLIB unsigned
+    unsigned
     String::length (const char* string)
     {
         // Instead of making it doing like this, I should make it read by
@@ -107,7 +104,7 @@ namespace Recurring::Utils
         return size;
     }
 
-    RLIB bool
+    bool
     String::operator!() const
     {
         // If data doesn't exist or the first element is '\0', return false.
@@ -115,7 +112,7 @@ namespace Recurring::Utils
         return data == nullptr || data[0] == '\0';
     }
 
-    RLIB bool
+    bool
     String::compare (const String& from, const String& to)
     {
         // The option I know at this point is: check if characters of the main
@@ -133,7 +130,7 @@ namespace Recurring::Utils
         return true;
     }
 
-    RLIB bool
+    bool
     String::compare (const char* from, const char* to)
     {
         // std::strcmp sucks. If "from" equals "to" return 0.
@@ -148,7 +145,7 @@ namespace Recurring::Utils
         return true;
     }
 
-    RLIB bool
+    bool
     String::is_empty () const
     {
         /*
@@ -173,7 +170,7 @@ namespace Recurring::Utils
         return is_empty;
     }
 
-    RLIB char&
+    char&
     String::char_at (unsigned int position) const
     {
         return data[position];

@@ -1,5 +1,5 @@
-#ifndef RE_LOGGER_GUARD
-#define RE_LOGGER_GUARD
+#ifndef LOGGER_GUARD
+#define LOGGER_GUARD
 #include <iostream>
 #include <rutils/console/card.hpp>
 #include <rutils/console/text.hpp>
@@ -49,7 +49,7 @@ namespace Recurring::Console
 
     // @todo Make Logger a true logger. Adding buffer member, and saving the content into a file!
 
-    class RLIB Logger
+    class Logger
     {
         Utils::String buffer; // For each print from an instance of Logger, it prints here.
 
@@ -93,4 +93,4 @@ namespace Recurring::Console
         }
     };
 } // namespace Recurring::Console
-#endif // RE_LOGGER_GUARD
+#endif
