@@ -19,11 +19,14 @@ add_library(recore SHARED
             source/console/logger.cpp
             source/utils/string.cpp
             source/math/functions.cpp
-            source/math/objects.cpp)
-add_library(regui SHARED
+            source/math/objects.cpp
             source/core/window.cpp
             source/core/buffer_manager.cpp)
 
-target_include_directories(recore PUBLIC include)
-target_include_directories(regui PUBLIC include)
-target_link_libraries(regui PUBLIC glfw glew32 opengl32 recore)
+target_include_directories(recore PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+
+if (WIN32)
+target_link_libraries(recore PUBLIC glfw glew32 opengl32)
+elseif(LINUX)
+target_link_libraries(recore PUBLIC glfw GL GLEW)
+endif ()
