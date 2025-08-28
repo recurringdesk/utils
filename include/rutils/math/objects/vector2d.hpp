@@ -9,10 +9,16 @@ namespace Recurring::Math
     {
         float x, y;
         float length () const;
-        Vector2D (float x = 0.0f, float y = 0.0f);
+        Vector2D (float x, float y);
+        Vector2D ();
+
         Vector2D operator+ (const Vector2D& right_hand_side) const;
         Vector2D operator- (const Vector2D& right_hand_side) const;
         const Vector2D& operator= (const Vector2D& right_hand_size);
+
+        bool operator== (const Vector2D& right_hand_side) const;
+        bool operator!= (const Vector2D& right_hand_side) const;
+        bool operator!() const;
     };
 } // namespace Recurring::Math
 #endif
