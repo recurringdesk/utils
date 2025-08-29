@@ -3,7 +3,7 @@
 
 #include <rutils/core/api.hpp>
 
-namespace Recurring::Utils
+namespace Recurring::Core
 {
     // A substitute for std::string and blah blah blah.
     // Try to use it in the whole project! - 2025-08-17

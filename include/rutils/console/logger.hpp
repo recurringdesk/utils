@@ -21,6 +21,8 @@ horrible in too many ways that I can't even use it in the future.
 
 namespace Recurring::Console
 {
+    using Core::String;
+
     /*
     ChatGPT gave me the next line. In 2 years of C++ I've never seen this before.
     I don't know what is a concept, actually. Is it to say "Hey! You can't do this
@@ -51,7 +53,7 @@ namespace Recurring::Console
 
     class Logger
     {
-        Utils::String buffer; // For each print from an instance of Logger, it prints here.
+        String buffer; // For each print from an instance of Logger, it prints here.
 
     public:
         // The "kind" of any println. It's gonna be putted on the left side.

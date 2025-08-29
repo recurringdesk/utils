@@ -17,12 +17,14 @@ typedef struct GLFWwindow _RE_INTERNAL_WindowHandle;
 
 namespace Recurring::System::OpenGL
 {
+    using Core::String;
+
     // Idk if Window must be part of system. Yeah, it's a wrapper for GLFW,
     // because it's gonna be painful to implement Wayland, X11 or even WinAPI from scratch. - 2025-17-08
 
     class Context
     {
-        Utils::String title = nullptr;
+        String title = nullptr;
         _RE_INTERNAL_WindowHandle* id = nullptr;
         Core::Node* current_node = nullptr;
 
@@ -66,8 +68,8 @@ namespace Recurring::System::OpenGL
         void poll_events () const;
         void wait_events () const;
         void swap_buffers () const;
-        int set_title (const Utils::String& title);
-        const Utils::String& get_title () const;
+        int set_title (const String& title);
+        const String& get_title () const;
         _RE_INTERNAL_WindowHandle* get_id () const;
         void set_id (_RE_INTERNAL_WindowHandle* id);
         virtual int
