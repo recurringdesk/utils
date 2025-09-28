@@ -1,9 +1,9 @@
 #ifndef WINDOW_GUARD
 #define WINDOW_GUARD
 
-#include <rutils/core/string.hpp>
-#include <rutils/graphics/color.hpp>
-#include <rutils/graphics/node.hpp>
+#include <sixty/core/string.hpp>
+#include <sixty/graphics/color.hpp>
+#include <sixty/graphics/node.hpp>
 
 /* 64::00 | 2025-08-27 13:59:43
 ---
@@ -15,8 +15,9 @@ myself. Not now, not even in 5 years... Maybe never.
 
 typedef struct GLFWwindow _RE_INTERNAL_WindowHandle;
 
-namespace Recurring::System::OpenGL
+namespace Sixty::Graphics
 {
+    using Core::Node;
     using Core::String;
 
     // Idk if Window must be part of system. Yeah, it's a wrapper for GLFW,
@@ -26,15 +27,15 @@ namespace Recurring::System::OpenGL
     {
         String title = nullptr;
         _RE_INTERNAL_WindowHandle* id = nullptr;
-        Core::Node* current_node = nullptr;
+        Node* current_node = nullptr;
 
     protected:
         int make_context_current () const;
         virtual void
-        internal_loop (Core::Node* node);
+        internal_loop (Node* node);
 
     public:
-        Context (Core::Node* node = nullptr);
+        Context (Node* node = nullptr);
         ~Context ();
 
         typedef void (*framebuffer_size) (_RE_INTERNAL_WindowHandle* id, int width, int height);
@@ -76,6 +77,6 @@ namespace Recurring::System::OpenGL
         run ();
         void clear_color (const Color& color);
     };
-} // namespace Recurring::System::OpenGL
+} // namespace Sixty::Graphics
 
 #endif

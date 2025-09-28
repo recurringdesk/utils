@@ -1,9 +1,7 @@
 #ifndef TRIGONOMETRIC_FUNCTIONS_GUARD
 #define TRIGONOMETRIC_FUNCTIONS_GUARD
 
-#include <rutils/core/api.hpp>
-
-namespace Recurring::Math
+namespace Sixty::Math
 {
     /**
      * @brief The "X" value of a circle.
@@ -35,6 +33,6 @@ namespace Recurring::Math
      */
     template <typename T>
     T tangent (T angle);
-} // namespace Recurring::Math
+} // namespace Sixty::Math
 
 #endif

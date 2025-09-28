@@ -2,9 +2,8 @@
 #define BUFFER_MANAGER_GUARD
 
 #include <GL/glew.h>
-#include <rutils/core/api.hpp>
 
-namespace Recurring::Core::Graphics
+namespace Sixty::Graphics
 {
     struct BufferObject
     {
@@ -27,6 +26,6 @@ namespace Recurring::Core::Graphics
     public:
         BufferManager (const BufferObject& vertex_buffer);
     };
-} // namespace Recurring::Core::Graphics
+} // namespace Sixty::Graphics
 
 #endif

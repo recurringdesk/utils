@@ -1,9 +1,12 @@
 #ifndef NODE_GUARD
 #define NODE_GUARD
 
-#include <rutils/core/api.hpp>
+/* 64::00 | 2025-09-28 03:37:51
+---
+Move this to core folder
+*/
 
-namespace Recurring::Core
+namespace Sixty::Core
 {
     // class Node must be like Godot's Node. Not identical, but the same ideia. - 2025-08-17
 
@@ -23,5 +26,5 @@ namespace Recurring::Core
 
         virtual void process ();
     };
-} // namespace Recurring::Core
+} // namespace Sixty::Core
 #endif

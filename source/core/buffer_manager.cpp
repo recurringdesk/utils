@@ -1,6 +1,6 @@
 #include <rutils/graphics/buffer_manager.hpp>
 
-namespace Recurring::Core::Graphics
+namespace Sixty::Core::Graphics
 {
     BufferManager::BufferManager (const BufferObject& vertex_buffer)
         : vertex_buffer (vertex_buffer)
@@ -37,4 +37,4 @@ namespace Recurring::Core::Graphics
         glBindBuffer (target, 0);
     }
 
-} // namespace Recurring::Core::Graphics
+} // namespace Sixty::Core::Graphics

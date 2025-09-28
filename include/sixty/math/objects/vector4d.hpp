@@ -1,9 +1,7 @@
 #ifndef VECTOR4D_GUARD
 #define VECTOR4D_GUARD
 
-#include <rutils/core/api.hpp>
-
-namespace Recurring::Math
+namespace Sixty::Math
 {
     struct Vector4D
     {
@@ -20,6 +18,6 @@ namespace Recurring::Math
         bool operator!= (const Vector4D& right_hand_side) const;
         bool operator!() const;
     };
-} // namespace Recurring::Math
+} // namespace Sixty::Math
 
 #endif

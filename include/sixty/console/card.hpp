@@ -1,16 +1,13 @@
 #ifndef CARD_GUARD
 #define CARD_GUARD
 
-#include <rutils/core/api.hpp>
-
-namespace Recurring::Console
+namespace Sixty::Console
 {
-    struct Card
+    struct [[deprecated]] Card
     {
-
         const char* color;
         const char* title;
     };
-} // namespace Recurring::Console
+} // namespace Sixty::Console
 
 #endif

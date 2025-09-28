@@ -1,9 +1,7 @@
 #ifndef COLOR_GUARD
 #define COLOR_GUARD
 
-#include <rutils/core/api.hpp>
-
-namespace Recurring
+namespace Sixty::Graphics
 {
     /* 64::00 | 2025-08-26 20:14:43
     Move implementation to its own file
@@ -27,5 +25,5 @@ namespace Recurring
         {
         }
     };
-} // namespace Recurring
+} // namespace Sixty::Graphics
 #endif

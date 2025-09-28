@@ -1,9 +1,7 @@
 #ifndef VECTOR3D_GUARD
 #define VECTOR3D_GUARD
 
-#include <rutils/core/api.hpp>
-
-namespace Recurring::Math
+namespace Sixty::Math
 {
     struct Vector3D
     {
@@ -20,5 +18,5 @@ namespace Recurring::Math
         bool operator!= (const Vector3D& right_hand_side) const;
         bool operator!() const;
     };
-} // namespace Recurring::Math
+} // namespace Sixty::Math
 #endif

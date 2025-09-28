@@ -11,7 +11,7 @@
 
 // Math is literally a wrapper for cmath? Go to hell which one had this big idea... (to me) - 2025-08-17
 
-namespace Recurring::Math
+namespace Sixty::Math
 {
     template <>
     float
@@ -118,4 +118,4 @@ namespace Recurring::Math
     {
         return std::sqrt (value);
     }
-} // namespace Recurring::Math
+} // namespace Sixty::Math

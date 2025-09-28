@@ -11,9 +11,9 @@ _RE_INTERNAL_set_framebuffer_callback (_RE_INTERNAL_WindowHandle*, int width, in
     glViewport (0, 0, width, height);
 }
 
-namespace Recurring::System::OpenGL
+namespace Sixty::System::OpenGL
 {
-    using Recurring::Console::Logger;
+    using Sixty::Console::Logger;
 
     void
     Context::internal_loop (Core::Node* node)
@@ -207,4 +207,4 @@ namespace Recurring::System::OpenGL
     {
         return title;
     }
-} // namespace Recurring::System::OpenGL
+} // namespace Sixty::System::OpenGL

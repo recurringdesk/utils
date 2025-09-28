@@ -1,7 +1,7 @@
 #include <rutils/console/logger.hpp>
 #include <rutils/core/string.hpp>
 
-namespace Recurring::Core
+namespace Sixty::Core
 {
     // I should learn how I can make constructors and assignments faster.
     // My anxiety is attacking me.
@@ -176,4 +176,4 @@ namespace Recurring::Core
     {
         return data[position];
     }
-} // namespace Recurring::Core
+} // namespace Sixty::Core

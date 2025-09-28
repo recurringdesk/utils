@@ -4,7 +4,7 @@
 #include <rutils/math/objects/vector3d.hpp>
 #include <rutils/math/objects/vector4d.hpp>
 
-namespace Recurring::Math
+namespace Sixty::Math
 {
     //
     // Vector2D
@@ -155,4 +155,4 @@ namespace Recurring::Math
     {
     }
 
-} // namespace Recurring::Math
+} // namespace Sixty::Math

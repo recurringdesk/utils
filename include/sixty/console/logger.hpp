@@ -1,10 +1,14 @@
 #ifndef LOGGER_GUARD
 #define LOGGER_GUARD
 #include <iostream>
-#include <rutils/console/card.hpp>
-#include <rutils/console/text.hpp>
-#include <rutils/core/api.hpp>
-#include <rutils/core/string.hpp>
+#include <sixty/console/card.hpp>
+#include <sixty/console/text.hpp>
+#include <sixty/core/string.hpp>
+
+/* 64::00 | 2025-09-27 12:41:49
+---
+I'm setting this Logger as deprecated.
+*/
 
 #ifndef DEBUG
 #define LOG_DEBUG(description) std::cout << description << '\n';
@@ -19,7 +23,7 @@ It's OK if it's overheaded, but, turning it
 horrible in too many ways that I can't even use it in the future.
 */
 
-namespace Recurring::Console
+namespace Sixty::Console
 {
     using Core::String;
 
@@ -51,16 +55,16 @@ namespace Recurring::Console
 
     // @todo Make Logger a true logger. Adding buffer member, and saving the content into a file!
 
-    class Logger
+    class [[deprecated]] Logger
     {
         String buffer; // For each print from an instance of Logger, it prints here.
 
     public:
         // The "kind" of any println. It's gonna be putted on the left side.
-        static constexpr Card WARNING = { Text::Color::YELLOW, Text::Title::WARNING };
-        static constexpr Card INFO = { Text::Color::GREEN, Text::Title::INFO };
-        static constexpr Card ERROR = { Text::Color::RED, Text::Title::ERROR };
-        static constexpr Card GENERIC = { Text::Color::WHITE, Text::Title::GENERIC };
+        static constexpr Card WARNING = { Color::YELLOW, Title::WARNING };
+        static constexpr Card INFO = { Color::GREEN, Title::INFO };
+        static constexpr Card ERROR = { Color::RED, Title::ERROR };
+        static constexpr Card GENERIC = { Color::WHITE, Title::GENERIC };
 
         // @todo Some kinda Variant type, like godot. To see how it works.
 
@@ -91,8 +95,8 @@ namespace Recurring::Console
         static void
         print (const Card& card, Args&&... args)
         {
-            std::cout << '[' << card.color << card.title << Text::Color::RESET << ']' << ' ' << (... << std::forward<Args> (args)) << '\n';
+            std::cout << '[' << card.color << card.title << Color::RESET << ']' << ' ' << (... << std::forward<Args> (args)) << '\n';
         }
     };
-} // namespace Recurring::Console
+} // namespace Sixty::Console
 #endif

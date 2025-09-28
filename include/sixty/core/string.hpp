@@ -1,9 +1,7 @@
 #ifndef STRING_GUARD
 #define STRING_GUARD
 
-#include <rutils/core/api.hpp>
-
-namespace Recurring::Core
+namespace Sixty::Core
 {
     // A substitute for std::string and blah blah blah.
     // Try to use it in the whole project! - 2025-08-17
@@ -58,6 +56,6 @@ namespace Recurring::Core
         // stuff every time when calling `length` - 2025-08-17
         unsigned size;
     };
-} // namespace Recurring::Utils
+} // namespace Sixty::Core
 
 #endif

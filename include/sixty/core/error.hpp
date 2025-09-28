@@ -1,7 +1,7 @@
 #ifndef ERROR_GUARD
 #define ERROR_GUARD
 
-namespace Recurring
+namespace Sixty::Core
 {
     // Errors codes
     // Just avoiding magic numbers. - 2025-08-17
@@ -20,5 +20,5 @@ namespace Recurring
         CONTEXT_WAS_NOT_MAKE,
         STRING_IS_EMPTY
     };
-} // namespace Recurring
+} // namespace Sixty::Core
 #endif

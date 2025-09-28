@@ -1,6 +1,6 @@
 #include <rutils/graphics/node.hpp>
 
-namespace Recurring::Core
+namespace Sixty::Core
 {
     void
     Node::ready ()
@@ -11,4 +11,4 @@ namespace Recurring::Core
     Node::process ()
     {
     }
-} // namespace Recurring::Core
+} // namespace Sixty::Core
